@@ -5582,7 +5582,7 @@ MachoMenuCheckbox(VIPTabSections[4], "noclip",
     end
 )
 
-MachoMenuCheckbox(VIPTabSections[4], "Godmode", 
+MachoMenuCheckbox(VIPTabSections[4], "godmode", 
     function()
         TriggerEvent('txcl:setPlayerMode', "godmode", true)
     end, 
@@ -5591,16 +5591,20 @@ MachoMenuCheckbox(VIPTabSections[4], "Godmode",
     end
 )
 
-MachoMenuCheckbox(VIPTabSections[4], "Heal Player", function()
-    TriggerEvent('txcl:heal', -1)
-end)
-
-MachoMenuCheckbox(VIPTabSections[4], "Heal Player", function()
-   MachoInjectResource2(3, 'monitor', [[
+MachoMenuCheckbox(VIPTabSections[4], "tx id", 
+    function()
+        MachoInjectResource2(3, 'monitor', [[
     menuIsAccessible = true
     toggleShowPlayerIDs(true, true)
 ]])
-end)
+    end, 
+    function()
+       MachoInjectResource2(3, 'monitor', [[
+    toggleShowPlayerIDs(false, false)
+]])
+    end
+)
+
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
 --     if not HasValidKey() then return end
     
@@ -5917,6 +5921,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
