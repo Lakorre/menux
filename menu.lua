@@ -204,7 +204,6 @@ local MenuWindow = MachoMenuTabbedWindow("VIP", MenuStartCoords.x, MenuStartCoor
 MachoMenuSetKeybind(MenuWindow, 0x14)
 MachoMenuSetAccent(MenuWindow, 52, 137, 235)
 
-MachoMenuText(MenuWindow, "V.Xz2")
 
 -- local function CreateRainbowInterface()
 --     CreateThread(function()
@@ -5857,6 +5856,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
