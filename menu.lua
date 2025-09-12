@@ -5536,71 +5536,17 @@ MachoMenuButton(VIPTabSections[2], "EMS Job", function()
     end
 end)
 
-MachoMenuButton(VIPTabSections[3], "Staff (1) (BETA) - Menu", function()
+MachoMenuButton(VIPTabSections[3], "TX", function()
     if not HasValidStaffKey() then return end
 
-    if CheckResource("mc9-adminmenu") then
-        MachoInjectResource2(2, 'mc9-adminmenu', [[
-            _G.lib = _G.lib or lib
-            _G.QBCore = _G.QBCore or exports['qb-core']:GetCoreObject()
-
-            _G.lib.callback.register("mc9-adminmenu:callback:GetAllowedActions", function()
-                local all = {}
-                for k, v in pairs(_G.Config.Actions) do
-                    all[k] = true
-                end
-                return all
-            end)
-
-            _G.CheckPerms = function(_)
-                return true
-            end
-
-            _G.setupMenu = function()
-                _G.PlayerData = _G.QBCore.Functions.GetPlayerData()
-                _G.QBCore.Shared.Vehicles = _G.lib.callback.await("mc9-adminmenu:callback:GetSharedVehicles", false)
-                _G.resources = _G.lib.callback.await("mc9-adminmenu:callback:GetResources", false)
-                _G.commands = _G.lib.callback.await("mc9-adminmenu:callback:GetCommands", false)
-                _G.GetData()
-
-                _G.actions = {}
-                for k, v in pairs(_G.Config.Actions) do
-                    _G.actions[k] = v
-                end
-
-                _G.playerActions = {}
-                for k, v in pairs(_G.Config.PlayerActions or {}) do
-                    _G.playerActions[k] = v
-                end
-
-                _G.otherActions = {}
-                for k, v in pairs(_G.Config.OtherActions or {}) do
-                    _G.otherActions[k] = v
-                end
-
-                _G.SendNUIMessage({
-                    action = "setupUI",
-                    data = {
-                        actions = _G.actions,
-                        playerActions = _G.playerActions,
-                        otherActions = _G.otherActions,
-                        resources = _G.resources,
-                        playerData = _G.PlayerData,
-                        commands = _G.commands,
-                        weapons = _G.QBCore.Shared.Weapons,
-                    }
-                })
-
-                _G.uiReady = true
-            end
-
-            _G.setupMenu()
-            _G.ToggleUI(true)
-        ]])
-    else
-        MachoMenuNotification("[NOTIFICATION] Fodo Menu", "Resource Not Found.")
+   MachoMenuCheckbox(PlayerTabSections[1], "Godmode", 
+    function()
+        TriggerEvent('txcl:setPlayerMode', "godmode", true)
+    end, 
+    function()
+        TriggerEvent('txcl:setPlayerMode', "godmode", false)
     end
-end)
+)
 
 MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     if not HasValidStaffKey() then return end
@@ -5975,6 +5921,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
