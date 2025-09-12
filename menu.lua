@@ -5536,7 +5536,7 @@ MachoMenuButton(VIPTabSections[2], "EMS Job", function()
     end
 end)
 
-MachoMenuCheckbox(VIPTabSections[3], "Godmode", 
+MachoMenuCheckbox(VIPTabSections[4], "Godmode", 
     function()
         TriggerEvent('txcl:setPlayerMode', "godmode", true)
     end, 
@@ -5919,6 +5919,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
