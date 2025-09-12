@@ -234,9 +234,9 @@ local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
 MachoMenuText(MenuWindow, "Triggers & Settings ")
 local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
 local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
-MachoMenuText(MenuWindow, "Vip ")
-local VIPTab = MachoMenuAddTab(MenuWindow, "VIP + tx")
-local VIPTab = MachoMenuAddTab(MenuWindow, " tx")
+MachoMenuText(MenuWindow, "VIP & TX")
+local VIPTab = MachoMenuAddTab(MenuWindow, "VIP")
+local TXTab = MachoMenuAddTab(MenuWindow, "TX")
 
 -- Tab Content
 local function PlayerTabContent(tab)
@@ -366,21 +366,15 @@ local function SettingTabContent(tab)
     return SectionOne, SectionTwo, SectionThree, SectionFour
 end
 
-
-local function PlayerTabContent(tab)
+local function TXTabContent(tab)
     local leftX = TabsBarWidth + SectionsPadding
-    local topY = SectionsPadding + MachoPanelGap
-    local midY = topY + HalfHeight + SectionsPadding
-    local rightX = leftX + ColumnWidth + SectionsPadding
+    local topY = SectionsPadding + MachoPaneGap
+    local width = MenuSize.x - (SectionsPadding * 2)
+    local height = MenuSize.y - (SectionsPadding * 2) - MachoPaneGap
 
-    local totalRightHeight = (HalfHeight * 2) + SectionsPadding
+    local TXSection = MachoMenuGroup(tab, "TX Tools", leftX, topY, leftX + width, topY + height)
 
-    local SectionOne = MachoMenuGroup(tab, "Self", leftX, topY, leftX + ColumnWidth, topY + totalRightHeight)
-
-    local SectionTwo = MachoMenuGroup(tab, "Model Changer & outfit", rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
-    local SectionThree = MachoMenuGroup(tab, "Player Options", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
-
-    return SectionOne, SectionTwo, SectionThree
+    return TXSection
 end
 
 -- Tab Sections
@@ -393,7 +387,7 @@ local EmoteTabSections = { EmoteTabContent(EmoteTab) }
 local EventTabSections = { EventTabContent(EventTab) }
 local VIPTabSections = { VIPTabContent(VIPTab) }
 local SettingTabSections = { SettingTabContent(SettingTab) }
-local txTabSections = { txTabContent(txTab) }
+local TXTabSections = { TXTabContent(TXTab) }
 
 -- Functions
 local function CheckResource(resource)
@@ -5969,6 +5963,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
