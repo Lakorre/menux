@@ -5638,7 +5638,7 @@ MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     end
 end)
 
-MachoMenuButton(PlayerTabSections[3], "Heal", function()
+MachoMenuButton(PlayerTabSections[4], "Heal", function()
      TriggerEvent('txcl:heal', -1)
 end)
 
@@ -5958,6 +5958,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
