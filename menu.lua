@@ -5886,6 +5886,41 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     notify("Framework: %s", frameworkName)
 end)
 
+MachoMenuCheckbox(VehicleTabSections[1], "Vehicle Hop", function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        if NuRqVxEyKiOlZm == nil then NuRqVxEyKiOlZm = false end
+        NuRqVxEyKiOlZm = true
+
+        local function qPTnXLZKyb()
+            local ZlXoKmVcJdBeTr = CreateThread
+            ZlXoKmVcJdBeTr(function()
+                while NuRqVxEyKiOlZm and not Unloaded do
+                    local GvHnMzLoPqAxEs = PlayerPedId
+                    local DwZaQsXcErDfGt = GetVehiclePedIsIn
+                    local BtNhUrLsEkJmWq = IsDisabledControlPressed
+                    local PlZoXvNyMcKwQi = ApplyForceToEntity
+
+                    local GtBvCzHnUkYeWr = GvHnMzLoPqAxEs()
+                    local OaXcJkWeMzLpRo = DwZaQsXcErDfGt(GtBvCzHnUkYeWr, false)
+
+                    if OaXcJkWeMzLpRo and OaXcJkWeMzLpRo ~= 0 and BtNhUrLsEkJmWq(0, 22) then
+                        PlZoXvNyMcKwQi(OaXcJkWeMzLpRo, 1, 0.0, 0.0, 6.0, 0.0, 0.0, 0.0, 0, true, true, true, true, true)
+                    end
+
+                    Wait(0)
+                end
+            end)
+        end
+
+        qPTnXLZKyb()
+    ]])
+end, function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        NuRqVxEyKiOlZm = false
+    ]])
+end)
+
+
 
 
 
