@@ -1532,29 +1532,6 @@ MachoMenuButton(PlayerTabSections[2], "Change Model", function()
     end
 end)
 
-MachoMenuButton(PlayerTabSections[2], "Freemode (so7)", function()
-    local ModelName = "mp_m_freemode_01"
-
-    local Code = string.format([[
-        local function GykR8qjWTp()
-            local modelHash = GetHashKey("%s")
-
-            RequestModel(modelHash)
-            while not HasModelLoaded(modelHash) do
-                Wait(1)
-            end
-
-            SetPlayerModel(PlayerId(), modelHash)
-            SetPedDefaultComponentVariation(PlayerPedId())
-        end
-
-        GykR8qjWTp()
-    ]], ModelName)
-
-    MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", Code)
-end)
-
-
 MachoMenuButton(PlayerTabSections[2], "Randomize Outfit", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         local function UxrKYLp378()
@@ -1613,6 +1590,29 @@ MachoMenuButton(PlayerTabSections[2], "Randomize Outfit", function()
         UxrKYLp378()
     ]])
 end)
+
+MachoMenuButton(PlayerTabSections[2], "Freemode (So7)", function()
+    local ModelName = "mp_m_freemode_01"
+
+    local Code = string.format([[
+        local function GykR8qjWTp()
+            local modelHash = GetHashKey("%s")
+
+            RequestModel(modelHash)
+            while not HasModelLoaded(modelHash) do
+                Wait(1)
+            end
+
+            SetPlayerModel(PlayerId(), modelHash)
+            SetPedDefaultComponentVariation(PlayerPedId())
+        end
+
+        GykR8qjWTp()
+    ]], ModelName)
+
+    MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", Code)
+end)
+
 
 MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
     function WhiteFodoDrip()
@@ -5907,6 +5907,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
