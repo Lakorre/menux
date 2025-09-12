@@ -5740,45 +5740,38 @@ MachoMenuButton(SettingTabSections[1], "close", function()
     MachoMenuDestroy(MenuWindow)
 end)
 
-MachoMenuCheckbox(WeaponTabSections[4], "bypass (Beta)", function()
+MachoMenuCheckbox(VehicleTabSections[4], "Unlimited Fuel", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-       local function DetectFiveGuard()
-        local function ResourceFileExists(resourceName, fileName)
-            local file = LoadResourceFile(resourceName, fileName)
-            return file ~= nil
+        if BlNkJmLzXcVb == nil then BlNkJmLzXcVb = false end
+        BlNkJmLzXcVb = true
+
+        local function LqWyXpR3tV()
+            local TmPlKoMiJnBg = CreateThread
+            local ZxCvBnMaSdFg = PlayerPedId
+            local YhUjIkOlPlMn = IsPedInAnyVehicle
+            local VcXzQwErTyUi = GetVehiclePedIsIn
+            local KpLoMkNjBhGt = DoesEntityExist
+            local JkLzXcVbNmAs = SetVehicleFuelLevel
+
+            TmPlKoMiJnBg(function()
+                while BlNkJmLzXcVb and not Unloaded do
+                    local ped = ZxCvBnMaSdFg()
+                    if YhUjIkOlPlMn(ped, false) then
+                        local veh = VcXzQwErTyUi(ped, false)
+                        if KpLoMkNjBhGt(veh) then
+                            JkLzXcVbNmAs(veh, 100.0)
+                        end
+                    end
+                    Wait(100)
+                end
+            end)
         end
 
-        local fiveGuardFile = "ai_module_fg-obfuscated.lua"
-        local numResources = GetNumResources()
-
-        for i = 0, numResources - 1 do
-            local resourceName = GetResourceByFindIndex(i)
-            if ResourceFileExists(resourceName, fiveGuardFile) then
-                return true, resourceName
-            end
-        end
-
-        return false, nil
-    end
-
-    Wait(100)
-
-    local found, resourceName = DetectFiveGuard()
-    if found and resourceName then
-        MachoResourceStop(resourceName)
-    end
-
+        LqWyXpR3tV()
+    ]])
 end, function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        LkJgFdSaQwErTy = false
-
-        local function yFBN9pqXcL()
-            local AsDfGhJkLzXcVb = PlayerPedId
-            local QwErTyUiOpAsDf = SetPedInfiniteAmmoClip
-            QwErTyUiOpAsDf(AsDfGhJkLzXcVb(), false)
-        end
-
-        yFBN9pqXcL()
+        BlNkJmLzXcVb = false
     ]])
 end)
 
@@ -5930,6 +5923,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
