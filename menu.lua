@@ -5620,6 +5620,11 @@ MachoMenuCheckbox(VIPTabSections[4], "tx id",
     end
 )
 
+MachoMenuButton(TeleportTabSections[4], "Waypoint", function()
+    TriggerEvent('txcl:tpToWaypoint')
+end)
+
+
 
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
 --     if not HasValidKey() then return end
@@ -5937,6 +5942,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
