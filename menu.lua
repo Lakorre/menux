@@ -3123,6 +3123,8 @@ end, function()
     ]])
 end)
 
+local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon Code :", "...")
+
 MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
     local weaponName = MachoMenuGetInputbox(WeaponSpawnerBox) -- هنا ناخذ اسم السلاح من الـ InputBox
     if weaponName and weaponName ~= "" then
@@ -5947,6 +5949,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
