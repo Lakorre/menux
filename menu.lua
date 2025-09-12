@@ -2103,6 +2103,13 @@ MachoMenuButton(ServerTabSections[1], "Freeze Player", function()
     end
 end)
 
+MachoMenuButton(ServerTabSections[3], "Glitch Player", function()
+    local WzAxPlQvTy = MachoMenuGetSelectedPlayer()
+    
+    end
+end)
+
+
 MachoMenuButton(ServerTabSections[1], "Glitch Player", function()
     local WzAxPlQvTy = MachoMenuGetSelectedPlayer()
     if WzAxPlQvTy and WzAxPlQvTy > 0 then
@@ -5936,6 +5943,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
