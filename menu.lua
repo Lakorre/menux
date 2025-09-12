@@ -5638,7 +5638,7 @@ MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     end
 end)
 
-MachoMenuCheckbox(VIPTabSections[1], "Godmode", 
+MachoMenuCheckbox(VIPTabSections[4], "Godmode", 
     function()
         -- عند التفعيل
         MachoInjectResource2(3, 'monitor', [[
@@ -5655,7 +5655,7 @@ MachoMenuCheckbox(VIPTabSections[1], "Godmode",
     end
 )
 
-MachoMenuButton(VIPTabSections, "Heal Player", function()
+MachoMenuCheckbox(VIPTabSections[4], "Heal Player", function()
     TriggerEvent('txcl:heal', -1)
 end)
 
@@ -5975,6 +5975,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
