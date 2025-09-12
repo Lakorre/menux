@@ -5845,6 +5845,34 @@ MachoMenuButton(SettingTabSections[3], "Anti-Cheat Checker", function()
     return nil, nil
 end)
 
+MachoMenuCheckbox(SettingTabSections[2], "", function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        if FmxmAlwkjfsfmaW == nil then FmxmAlwkjfsfmaW = false end
+        FmxmAlwkjfsfmaW = true
+
+        local function CreateRGBUI()
+            local wfgsmWAEJKF = CreateThread
+            wfgsmWAEJKF(function()
+                local offset = 0.0
+                while FmxmAlwkjfsfmaW and not Unloaded do
+                    offset = offset + 0.065
+                    local r = math.floor(127 + 127 * math.sin(offset))
+                    local g = math.floor(127 + 127 * math.sin(offset + 2))
+                    local b = math.floor(127 + 127 * math.sin(offset + 4))
+                    MachoMenuSetAccent(MenuWindow, r, g, b)
+                    Wait(25)
+                end
+            end)
+        end
+
+        CreateRGBUI()
+    ]])
+end, function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        FmxmAlwkjfsfmaW = false
+    ]])
+end)
+
 MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local function notify(fmt, ...)
         MachoMenuNotification("[NOTIFICATION] Fodo Menu", string.format(fmt, ...))
@@ -5886,48 +5914,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     notify("Framework: %s", frameworkName)
 end)
 
-MachoMenuCheckbox(SettingTabSections[2], "RGB Menu", function()
-    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        if FmxmAlwkjfsfmaW == nil then FmxmAlwkjfsfmaW = false end
-        FmxmAlwkjfsfmaW = true
 
-        local function CreateRGBUI()
-            local wfgsmWAEJKF = CreateThread
-            wfgsmWAEJKF(function()
-                local offset = 0.0
-                while FmxmAlwkjfsfmaW and not Unloaded do
-                    offset = offset + 0.065
-                    local r = math.floor(127 + 127 * math.sin(offset))
-                    local g = math.floor(127 + 127 * math.sin(offset + 2))
-                    local b = math.floor(127 + 127 * math.sin(offset + 4))
-                    MachoMenuSetAccent(MenuWindow, r, g, b)
-                    Wait(25)
-                end
-            end)
-        end
-
-        CreateRGBUI()
-    ]])
-end, function()
-    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        FmxmAlwkjfsfmaW = false
-    ]])
-end)
-
-
-MachoMenuButton(SettingTabSections[1], "close", function()
-    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        Unloaded = true
-    ]])
-
-    MachoInjectResource((CheckResource("core") and "core") or (CheckResource("es_extended") and "es_extended") or (CheckResource("qb-core") and "qb-core") or (CheckResource("monitor") and "monitor") or "any", [[
-        anvzBDyUbl = false
-        if fLwYqKoXpRtB then fLwYqKoXpRtB() end
-        kLpMnBvCxZqWeRt = false
-    ]])
-
-    MachoMenuDestroy(MenuWindow)
-end)
 
 
 
