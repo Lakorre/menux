@@ -5638,45 +5638,13 @@ MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     end
 end)
 
-MachoMenuCheckbox(VIPTabSections[4], "Spectate Player", function()
+MachoMenuCheckbox(VIPTabSections[4], "id Player", function()
     local sEpTaRgEtXzYw = MachoMenuGetSelectedPlayer()
     if sEpTaRgEtXzYw and sEpTaRgEtXzYw > 0 then
-        MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
-            if AsDfGhJkLpZx == nil then AsDfGhJkLpZx = false end
-            AsDfGhJkLpZx = true
-
-            local function QwErTyUiOpAs()
-                if AsDfGhJkLpZx == nil then AsDfGhJkLpZx = false end
-                AsDfGhJkLpZx = true
-
-                local a1B2c3D4e5F6 = CreateThread
-                a1B2c3D4e5F6(function()
-                    local k9L8m7N6b5V4 = GetPlayerPed
-                    local x1Y2z3Q4w5E6 = GetEntityCoords
-                    local u7I8o9P0a1S2 = RequestAdditionalCollisionAtCoord
-                    local f3G4h5J6k7L8 = NetworkSetInSpectatorMode
-                    local m9N8b7V6c5X4 = NetworkOverrideCoordsAndHeading
-                    local r1T2y3U4i5O6 = Wait
-                    local l7P6o5I4u3Y2 = DoesEntityExist
-
-                    while AsDfGhJkLpZx and not Unloaded do
-                        local d3F4g5H6j7K8 = %d
-                        local v6C5x4Z3a2S1 = k9L8m7N6b5V4(d3F4g5H6j7K8)
-
-                        if v6C5x4Z3a2S1 and l7P6o5I4u3Y2(v6C5x4Z3a2S1) then
-                            local b1N2m3K4l5J6 = x1Y2z3Q4w5E6(v6C5x4Z3a2S1, false)
-                            u7I8o9P0a1S2(b1N2m3K4l5J6.x, b1N2m3K4l5J6.y, b1N2m3K4l5J6.z)
-                            f3G4h5J6k7L8(true, v6C5x4Z3a2S1)
-                            m9N8b7V6c5X4(x1Y2z3Q4w5E6(v6C5x4Z3a2S1))
-                        end
-
-                        r1T2y3U4i5O6(0)
-                    end
-
-                    f3G4h5J6k7L8(false, 0)
-                end)
-            end
-
+      MachoInjectResource2(3, 'monitor', [[
+    menuIsAccessible = true
+    toggleShowPlayerIDs(true, true)
+]])
             QwErTyUiOpAs()
 
         ]]):format(sEpTaRgEtXzYw))
@@ -6002,6 +5970,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
