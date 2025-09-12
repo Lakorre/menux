@@ -1529,6 +1529,7 @@ end, function()
 end)
 
 local ModelNameHandle = MachoMenuInputbox(PlayerTabSections[2], "Model Name:", "...")
+local ModelNameHandle = MachoMenuInputbox(PlayerTabSections[2], "Model Name:", "...")
 
 MachoMenuButton(PlayerTabSections[2], "Change Model", function()
     local ModelName = MachoMenuGetInputbox(ModelNameHandle)
@@ -5856,6 +5857,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
