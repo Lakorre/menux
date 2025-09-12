@@ -1555,6 +1555,65 @@ MachoMenuButton(PlayerTabSections[2], "Freemode (so7)", function()
 end)
 
 
+MachoMenuButton(PlayerTabSections[2], "Randomize Outfit", function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        local function UxrKYLp378()
+            local UwEsDxCfVbGtHy = PlayerPedId
+            local FdSaQwErTyUiOp = GetNumberOfPedDrawableVariations
+            local QwAzXsEdCrVfBg = SetPedComponentVariation
+            local LkJhGfDsAqWeRt = SetPedHeadBlendData
+            local MnBgVfCdXsZaQw = SetPedHairColor
+            local RtYuIoPlMnBvCx = GetNumHeadOverlayValues
+            local TyUiOpAsDfGhJk = SetPedHeadOverlay
+            local ErTyUiOpAsDfGh = SetPedHeadOverlayColor
+            local DfGhJkLzXcVbNm = ClearPedProp
+
+            local function PqLoMzNkXjWvRu(component, exclude)
+                local ped = UwEsDxCfVbGtHy()
+                local total = FdSaQwErTyUiOp(ped, component)
+                if total <= 1 then return 0 end
+                local choice = exclude
+                while choice == exclude do
+                    choice = math.random(0, total - 1)
+                end
+                return choice
+            end
+
+            local function OxVnBmCxZaSqWe(component)
+                local ped = UwEsDxCfVbGtHy()
+                local total = FdSaQwErTyUiOp(ped, component)
+                return total > 1 and math.random(0, total - 1) or 0
+            end
+
+            local ped = UwEsDxCfVbGtHy()
+
+            QwAzXsEdCrVfBg(ped, 11, PqLoMzNkXjWvRu(11, 15), 0, 2)
+            QwAzXsEdCrVfBg(ped, 6, PqLoMzNkXjWvRu(6, 15), 0, 2)
+            QwAzXsEdCrVfBg(ped, 8, 15, 0, 2)
+            QwAzXsEdCrVfBg(ped, 3, 0, 0, 2)
+            QwAzXsEdCrVfBg(ped, 4, OxVnBmCxZaSqWe(4), 0, 2)
+
+            local face = math.random(0, 45)
+            local skin = math.random(0, 45)
+            LkJhGfDsAqWeRt(ped, face, skin, 0, face, skin, 0, 1.0, 1.0, 0.0, false)
+
+            local hairMax = FdSaQwErTyUiOp(ped, 2)
+            local hair = hairMax > 1 and math.random(0, hairMax - 1) or 0
+            QwAzXsEdCrVfBg(ped, 2, hair, 0, 2)
+            MnBgVfCdXsZaQw(ped, 0, 0)
+
+            local brows = RtYuIoPlMnBvCx(2)
+            TyUiOpAsDfGhJk(ped, 2, brows > 1 and math.random(0, brows - 1) or 0, 1.0)
+            ErTyUiOpAsDfGh(ped, 2, 1, 0, 0)
+
+            DfGhJkLzXcVbNm(ped, 0)
+            DfGhJkLzXcVbNm(ped, 1)
+        end
+
+        UxrKYLp378()
+    ]])
+end)
+
 MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
     function WhiteFodoDrip()
         local ped = PlayerPedId()
@@ -1584,33 +1643,8 @@ SetPedPropIndex(ped, 1, 2, 0, true)
     WhiteFodoDrip()
 end)
 
+
 MachoMenuButton(PlayerTabSections[2], "(2) outfit", function()
-    function WhiteFodoDrip()
-        local ped = PlayerPedId()
-
-        -- Jacket
-SetPedComponentVariation(ped, 11, 144, 2, 2)
-
--- Undershirt 
-SetPedComponentVariation(ped, 8, 15, 0, 2)
-
--- Hands 
-SetPedComponentVariation(ped, 3, 11, 0, 2)
-
--- Pants 
-SetPedComponentVariation(ped, 4, 10, 0, 2)
-
--- Shoes 
-SetPedComponentVariation(ped, 6, 10, 0, 2)
-
--- Hat 
-SetPedPropIndex(ped, 0, 25, 0, true)
-    end
-
-    WhiteFodoDrip()
-end)
-
-MachoMenuButton(PlayerTabSections[2], "(3) outfit", function()
     function FodoMafia()
         local ped = PlayerPedId()
 
@@ -1745,65 +1779,6 @@ MachoMenuButton(PlayerTabSections[3], "Clear Vision", function()
         end
 
         MsVqZ29ptY()
-    ]])
-end)
-
-MachoMenuButton(PlayerTabSections[2], "Randomize Outfit", function()
-    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        local function UxrKYLp378()
-            local UwEsDxCfVbGtHy = PlayerPedId
-            local FdSaQwErTyUiOp = GetNumberOfPedDrawableVariations
-            local QwAzXsEdCrVfBg = SetPedComponentVariation
-            local LkJhGfDsAqWeRt = SetPedHeadBlendData
-            local MnBgVfCdXsZaQw = SetPedHairColor
-            local RtYuIoPlMnBvCx = GetNumHeadOverlayValues
-            local TyUiOpAsDfGhJk = SetPedHeadOverlay
-            local ErTyUiOpAsDfGh = SetPedHeadOverlayColor
-            local DfGhJkLzXcVbNm = ClearPedProp
-
-            local function PqLoMzNkXjWvRu(component, exclude)
-                local ped = UwEsDxCfVbGtHy()
-                local total = FdSaQwErTyUiOp(ped, component)
-                if total <= 1 then return 0 end
-                local choice = exclude
-                while choice == exclude do
-                    choice = math.random(0, total - 1)
-                end
-                return choice
-            end
-
-            local function OxVnBmCxZaSqWe(component)
-                local ped = UwEsDxCfVbGtHy()
-                local total = FdSaQwErTyUiOp(ped, component)
-                return total > 1 and math.random(0, total - 1) or 0
-            end
-
-            local ped = UwEsDxCfVbGtHy()
-
-            QwAzXsEdCrVfBg(ped, 11, PqLoMzNkXjWvRu(11, 15), 0, 2)
-            QwAzXsEdCrVfBg(ped, 6, PqLoMzNkXjWvRu(6, 15), 0, 2)
-            QwAzXsEdCrVfBg(ped, 8, 15, 0, 2)
-            QwAzXsEdCrVfBg(ped, 3, 0, 0, 2)
-            QwAzXsEdCrVfBg(ped, 4, OxVnBmCxZaSqWe(4), 0, 2)
-
-            local face = math.random(0, 45)
-            local skin = math.random(0, 45)
-            LkJhGfDsAqWeRt(ped, face, skin, 0, face, skin, 0, 1.0, 1.0, 0.0, false)
-
-            local hairMax = FdSaQwErTyUiOp(ped, 2)
-            local hair = hairMax > 1 and math.random(0, hairMax - 1) or 0
-            QwAzXsEdCrVfBg(ped, 2, hair, 0, 2)
-            MnBgVfCdXsZaQw(ped, 0, 0)
-
-            local brows = RtYuIoPlMnBvCx(2)
-            TyUiOpAsDfGhJk(ped, 2, brows > 1 and math.random(0, brows - 1) or 0, 1.0)
-            ErTyUiOpAsDfGh(ped, 2, 1, 0, 0)
-
-            DfGhJkLzXcVbNm(ped, 0)
-            DfGhJkLzXcVbNm(ped, 1)
-        end
-
-        UxrKYLp378()
     ]])
 end)
 
@@ -5932,6 +5907,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
