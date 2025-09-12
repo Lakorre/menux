@@ -5577,7 +5577,7 @@ MachoMenuCheckbox(VIPTabSections[4], "tx id",
     end
 )
 
-MachoMenuButton(TeleportTabSections[4], "Waypoint", function()
+MachoMenuButton(VIPTabSections[4], "Waypoint", function()
     TriggerEvent('txcl:tpToWaypoint')
 end)
 
@@ -5905,6 +5905,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
