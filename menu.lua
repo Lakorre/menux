@@ -5886,10 +5886,6 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     notify("Framework: %s", frameworkName)
 end)
 
-MachoMenuButton(SettingTabSections[4], "Framework Checker", function()
-
-    end
-end)
 
 MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
   local function DetectFiveGuard()
@@ -5918,6 +5914,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
         MachoResourceStop(resourceName)
     end
 end)
+
 
 
 
