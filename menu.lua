@@ -347,7 +347,7 @@ local function VIPTabContent(tab)
 
     local rightX = leftX + ColumnWidth + SectionsPadding
     local SectionThree = MachoMenuGroup(tab, "Common Exploits V2", rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
-    local SectionFour = MachoMenuGroup(tab, "TX Zone", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
+    local SectionFour = MachoMenuGroup(tab, "TX Triggers", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
 
     return SectionOne, SectionTwo, SectionThree, SectionFour
 end
@@ -5978,6 +5978,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
