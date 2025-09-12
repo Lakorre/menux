@@ -786,7 +786,7 @@ MachoMenuCheckbox(PlayerTabSections[1], "No Clip", function()
                 while NpYgTbUcXsRoVm and not Unloaded do
                     Wait(0)
 
-                    if JkLzXcVbNmAsDf(0, 303) then
+                    if JkLzXcVbNmAsDf(0, 288) then
                         YtReWqAzXsEdCv = not YtReWqAzXsEdCv
                     end
 
@@ -5856,6 +5856,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
