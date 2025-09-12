@@ -5695,7 +5695,7 @@ end)
 -- end)
 
 -- Settings Tab
-MachoMenuButton(SettingTabSections[1], "Unload", function()
+MachoMenuButton(SettingTabSections[1], "close", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         Unloaded = true
     ]])
@@ -5856,6 +5856,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
