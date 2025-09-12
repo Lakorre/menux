@@ -1578,6 +1578,27 @@ MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
     WhiteFodoDrip()
 end)
 
+MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
+    function WhiteFodoDrip()
+        local ped = PlayerPedId()
+
+        -- Jacket
+        SetPedComponentVariation(ped, 11, 109, 0, 2)
+        -- Shirt/Undershirt
+        SetPedComponentVariation(ped, 8, 15, 0, 2)
+        -- Hands
+        SetPedComponentVariation(ped, 3, 5, 0, 2)
+        -- Legs
+        SetPedComponentVariation(ped, 4, 56, 0, 2)
+        -- Shoes
+        SetPedComponentVariation(ped, 6, 19, 0, 2)
+        -- Hat
+        SetPedPropIndex(ped, 0, 1, 0, true)
+    end
+
+    WhiteFodoDrip()
+end)
+
 MachoMenuButton(PlayerTabSections[2], "(2) outfit", function()
     function FodoMafia()
         local ped = PlayerPedId()
@@ -5855,6 +5876,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
