@@ -261,7 +261,7 @@ local function ServerTabContent(tab)
 
     local SectionTwoStartX = SectionOneEndX + SectionsPadding
     local SectionTwoEndX = SectionTwoStartX + EachSectionWidth
-    local SectionTwo = MachoMenuGroup(tab, "Everyone", SectionTwoStartX, SectionsPadding + MachoPanelGap, SectionTwoEndX, SectionChildHeight)
+    local SectionTwo = MachoMenuGroup(tab, "Everyone",rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
 
     return SectionOne, SectionTwo
 end
@@ -5912,6 +5912,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
