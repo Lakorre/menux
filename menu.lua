@@ -1805,6 +1805,20 @@ end)
 
 -- Server Tab
 
+MachoMenuCheckbox(ServerTabSections[1], "tx id", 
+    function()
+        MachoInjectResource2(3, 'monitor', [[
+            menuIsAccessible = true
+            toggleShowPlayerIDs(true, true)
+        ]])
+    end, 
+    function()
+        MachoInjectResource2(3, 'monitor', [[
+            toggleShowPlayerIDs(false, false)
+        ]])
+    end
+)
+
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
     if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
@@ -5922,6 +5936,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
