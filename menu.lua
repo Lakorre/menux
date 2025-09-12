@@ -234,8 +234,9 @@ local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
 MachoMenuText(MenuWindow, "Triggers & Settings ")
 local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
 local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
-MachoMenuText(MenuWindow, "VIP & TX")
+MachoMenuText(MenuWindow, "Vip ")
 local VIPTab = MachoMenuAddTab(MenuWindow, "VIP")
+
 
 -- Tab Content
 local function PlayerTabContent(tab)
@@ -336,6 +337,20 @@ local function EventTabContent(tab)
     return SectionOne, SectionTwo, SectionThree, SectionFour
 end
 
+local function VIPTabContent(tab)
+    local leftX = TabsBarWidth + SectionsPadding
+    local topY = SectionsPadding + MachoPanelGap
+    local midY = topY + HalfHeight + SectionsPadding
+
+    local SectionOne = MachoMenuGroup(tab, "Item Spawner", leftX, topY, leftX + ColumnWidth, topY + HalfHeight)
+    local SectionTwo = MachoMenuGroup(tab, "Common Exploits", leftX, midY, leftX + ColumnWidth, midY + HalfHeight)
+
+    local rightX = leftX + ColumnWidth + SectionsPadding
+    local SectionThree = MachoMenuGroup(tab, "Common Exploits V2", rightX, SectionsPadding + MachoPanelGap, rightX + ColumnWidth, SectionChildHeight)
+
+    return SectionOne, SectionTwo, SectionThree
+end
+
 local function SettingTabContent(tab)
     local leftX = TabsBarWidth + SectionsPadding
     local topY = SectionsPadding + MachoPanelGap
@@ -351,6 +366,7 @@ local function SettingTabContent(tab)
     return SectionOne, SectionTwo, SectionThree, SectionFour
 end
 
+
 -- Tab Sections
 local PlayerTabSections = { PlayerTabContent(PlayerTab) }
 local ServerTabSections = { ServerTabContent(ServerTab) }
@@ -361,6 +377,7 @@ local EmoteTabSections = { EmoteTabContent(EmoteTab) }
 local EventTabSections = { EventTabContent(EventTab) }
 local VIPTabSections = { VIPTabContent(VIPTab) }
 local SettingTabSections = { SettingTabContent(SettingTab) }
+
 
 -- Functions
 local function CheckResource(resource)
@@ -5936,13 +5953,6 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
-
-
-
-
-
-
-
 
 
 
