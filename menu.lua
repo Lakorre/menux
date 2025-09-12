@@ -1331,7 +1331,7 @@ end, function()
     ]])
 end)
 
-MachoMenuCheckbox(PlayerTabSections[1], "Super Punch", function()
+MachoMenuCheckbox(PlayerTabSections[1], "Super Punch (Risk)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         if qWeRtYuIoPlMnBv == nil then qWeRtYuIoPlMnBv = false end
         qWeRtYuIoPlMnBv = true
@@ -5904,6 +5904,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
