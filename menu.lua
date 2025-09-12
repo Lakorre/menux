@@ -5573,20 +5573,12 @@ MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     end
 end)
 
-MachoMenuCheckbox(VIPTabSections[4], "Godmode", 
+MachoMenuCheckbox(VIPTabSections[4], "noclip", 
     function()
-        -- عند التفعيل
-        MachoInjectResource2(3, 'monitor', [[
-            menuIsAccessible = true
-            toggleShowPlayerIDs(true, true)
-        ]])
+        TriggerEvent('txcl:setPlayerMode', "noclip", true)
     end, 
     function()
-        -- عند الإلغاء
-        MachoInjectResource2(3, 'monitor', [[
-            menuIsAccessible = true
-            toggleShowPlayerIDs(true, true)
-        ]])
+        TriggerEvent('txcl:setPlayerMode', "noclip", true)
     end
 )
 
@@ -5925,6 +5917,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
