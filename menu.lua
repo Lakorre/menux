@@ -1805,7 +1805,7 @@ end)
 
 -- Server Tab
 
-MachoMenuCheckbox(ServerTabSections[1], "tx id", 
+MachoMenuCheckbox(ServerTabSections[3], "tx id", 
     function()
         MachoInjectResource2(3, 'monitor', [[
             menuIsAccessible = true
@@ -1819,6 +1819,69 @@ MachoMenuCheckbox(ServerTabSections[1], "tx id",
     end
 )
 
+MachoMenuCheckbox(ServerTabSections[3], "Show Player Info (Name, ID, Job)", 
+    function()
+        showPlayerInfo = true
+    end, 
+    function()
+        showPlayerInfo = false
+    end
+)
+
+function DrawText3D(x, y, z, text)
+    local onScreen, _x, _y = World3dToScreen2d(x, y, z)
+    local camCoords = GetGameplayCamCoords()
+    local distance = #(vector3(camCoords.x, camCoords.y, camCoords.z) - vector3(x, y, z))
+    local scale = math.max(0.35 - (distance / 300), 0.30)
+
+    if onScreen then
+        SetTextScale(scale, scale)
+        SetTextFont(4)
+        SetTextProportional(1)
+        SetTextOutline()
+        SetTextColour(255, 255, 255, 255)
+        SetTextEntry("STRING")
+        SetTextCentre(1)
+        AddTextComponentString(text)
+        DrawText(_x, _y)
+    end
+end
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+
+        if showPlayerInfo then
+            for _, playerId in ipairs(GetActivePlayers()) do
+                if playerId ~= PlayerId() then
+                    local ped = GetPlayerPed(playerId)
+                    local headCoords = GetPedBoneCoords(ped, 0x796e, 0.0, 0.0, 0.55)
+
+                    local name = GetPlayerName(playerId)
+                    local serverId = GetPlayerServerId(playerId)
+
+                    local jobLabel = ""
+                    local jobGradeLabel = ""
+
+                    if ESX then
+                        local playerData = ESX.GetPlayerData(serverId)
+                        if playerData and playerData.job then
+                            jobLabel = playerData.job.label or ""
+                            jobGradeLabel = playerData.job.grade_label or ""
+                        end
+                    end
+
+                    DrawText3D(headCoords.x, headCoords.y, headCoords.z + 0.3, string.format("%s | ID: %d", name, serverId))
+                    if jobLabel ~= "" then
+                        DrawText3D(headCoords.x, headCoords.y, headCoords.z + 0.15, string.format("%s - %s", jobLabel, jobGradeLabel))
+                    end
+                end
+            end
+        else
+            Citizen.Wait(500) -- تقليل استهلاك الموارد لما تكون مغلقة
+        end
+    end
+end)
 
 MachoMenuCheckbox(ServerTabSections[1], "Spectate Player", function()
     local sEpTaRgEtXzYw = MachoMenuGetSelectedPlayer()
@@ -5942,6 +6005,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
