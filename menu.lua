@@ -5776,7 +5776,7 @@ end, function()
 end)
 
 
-MachoMenuCheckbox(SettingTabSections[2], "RGB Menu", function()
+MachoMenuCheckbox(SettingTabSections[4], "RGB Menu", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         if FmxmAlwkjfsfmaW == nil then FmxmAlwkjfsfmaW = false end
         FmxmAlwkjfsfmaW = true
@@ -5923,6 +5923,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
