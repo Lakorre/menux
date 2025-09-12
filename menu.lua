@@ -5578,8 +5578,8 @@ MachoMenuCheckbox(VIPTabSections[4], "noclip",
         TriggerEvent('txcl:setPlayerMode', "noclip", true)
     end, 
     function()
-        TriggerEvent('txcl:setPlayerMode', "noclip", true)
-    end
+        TriggerEvent('txcl:setPlayerMode', "godmode", true)
+    end, 
 )
 
 MachoMenuCheckbox(VIPTabSections[4], "Godmode", 
@@ -5917,6 +5917,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
