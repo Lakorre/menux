@@ -194,7 +194,7 @@ local TabsBarWidth = 180 --
 local SectionsPadding = 10
 local MachoPanelGap = 15
 
-local SectionChildWidth = MenuSize.x - TabsBarWidth
+local SectionChildWidth = MenuSize.x - TabsBarWidth - SectionsPadding
 local SectionChildHeight = MenuSize.y - (2 * SectionsPadding)
 
 local ColumnWidth = (SectionChildWidth - (SectionsPadding * 3)) / 2
@@ -5856,6 +5856,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
