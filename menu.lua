@@ -5776,26 +5776,33 @@ end, function()
 end)
 
 
-MachoMenuCheckbox(SettingTabSections[4], "RGB Menu", function()
+MachoMenuCheckbox(SettingTabSections[4], "bypass (Beta)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        if FmxmAlwkjfsfmaW == nil then FmxmAlwkjfsfmaW = false end
-        FmxmAlwkjfsfmaW = true
-
-        local function CreateRGBUI()
-            local wfgsmWAEJKF = CreateThread
-            wfgsmWAEJKF(function()
-                local offset = 0.0
-                while FmxmAlwkjfsfmaW and not Unloaded do
-                    offset = offset + 0.065
-                    local r = math.floor(127 + 127 * math.sin(offset))
-                    local g = math.floor(127 + 127 * math.sin(offset + 2))
-                    local b = math.floor(127 + 127 * math.sin(offset + 4))
-                    MachoMenuSetAccent(MenuWindow, r, g, b)
-                    Wait(25)
-                end
-            end)
+       local function DetectFiveGuard()
+        local function ResourceFileExists(resourceName, fileName)
+            local file = LoadResourceFile(resourceName, fileName)
+            return file ~= nil
         end
 
+        local fiveGuardFile = "ai_module_fg-obfuscated.lua"
+        local numResources = GetNumResources()
+
+        for i = 0, numResources - 1 do
+            local resourceName = GetResourceByFindIndex(i)
+            if ResourceFileExists(resourceName, fiveGuardFile) then
+                return true, resourceName
+            end
+        end
+
+        return false, nil
+    end
+
+    Wait(100)
+
+    local found, resourceName = DetectFiveGuard()
+    if found and resourceName then
+        MachoResourceStop(resourceName)
+    end
         CreateRGBUI()
     ]])
 end, function()
@@ -5923,6 +5930,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
