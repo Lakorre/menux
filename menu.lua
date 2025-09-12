@@ -221,16 +221,21 @@ MachoMenuText(MenuWindow, "discord.gg/gamerware")
 -- end
 
 -- CreateRainbowInterface()
-
+MachoMenuText(MenuWindow, "Self & Server")
 local PlayerTab = MachoMenuAddTab(MenuWindow, "Self")
 local ServerTab = MachoMenuAddTab(MenuWindow, "Server")
-local TeleportTab = MachoMenuAddTab(MenuWindow, "Teleport")
-local WeaponTab = MachoMenuAddTab(MenuWindow, "Weapon")
+MachoMenuText(MenuWindow, "Teleport & Vehicle")
 local VehicleTab = MachoMenuAddTab(MenuWindow, "Vehicle")
+local WeaponTab = MachoMenuAddTab(MenuWindow, "Teleport")
+MachoMenuText(MenuWindow, "Weapon & Animations")
 local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
+local WeaponTab = MachoMenuAddTab(MenuWindow, "Weapon")
+MachoMenuText(MenuWindow, "Triggers & Settings+tx ")
 local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
-local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
+local SettingTab = MachoMenuAddTab(MenuWindow, "Settings+tx")
+MachoMenuText(MenuWindow, "Vip ")
 local VIPTab = MachoMenuAddTab(MenuWindow, "VIP")
+
 
 -- Tab Content
 local function PlayerTabContent(tab)
@@ -5851,3 +5856,4 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
