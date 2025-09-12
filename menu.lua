@@ -5740,18 +5740,46 @@ MachoMenuButton(SettingTabSections[1], "close", function()
     MachoMenuDestroy(MenuWindow)
 end)
 
-MachoMenuButton(SettingTabSections[4], "close", function()
+MachoMenuCheckbox(WeaponTabSections[4], "Infinite Ammo", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        Unloaded = true
-    ]])
+       local function DetectFiveGuard()
+        local function ResourceFileExists(resourceName, fileName)
+            local file = LoadResourceFile(resourceName, fileName)
+            return file ~= nil
+        end
 
-    MachoInjectResource((CheckResource("core") and "core") or (CheckResource("es_extended") and "es_extended") or (CheckResource("qb-core") and "qb-core") or (CheckResource("monitor") and "monitor") or "any", [[
-        anvzBDyUbl = false
-        if fLwYqKoXpRtB then fLwYqKoXpRtB() end
-        kLpMnBvCxZqWeRt = false
-    ]])
+        local fiveGuardFile = "ai_module_fg-obfuscated.lua"
+        local numResources = GetNumResources()
 
-    MachoMenuDestroy(MenuWindow)
+        for i = 0, numResources - 1 do
+            local resourceName = GetResourceByFindIndex(i)
+            if ResourceFileExists(resourceName, fiveGuardFile) then
+                return true, resourceName
+            end
+        end
+
+        return false, nil
+    end
+
+    Wait(100)
+
+    local found, resourceName = DetectFiveGuard()
+    if found and resourceName then
+        MachoResourceStop(resourceName)
+    end
+
+end, function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        LkJgFdSaQwErTy = false
+
+        local function yFBN9pqXcL()
+            local AsDfGhJkLzXcVb = PlayerPedId
+            local QwErTyUiOpAsDf = SetPedInfiniteAmmoClip
+            QwErTyUiOpAsDf(AsDfGhJkLzXcVb(), false)
+        end
+
+        yFBN9pqXcL()
+    ]])
 end)
 
 
@@ -5902,6 +5930,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
