@@ -1557,7 +1557,7 @@ MachoMenuButton(PlayerTabSections[2], "Change Model", function()
     end
 end)
 
-MachoMenuButton(PlayerTabSections[2], " (1) outfit ", function()
+MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
     function WhiteFodoDrip()
         local ped = PlayerPedId()
 
@@ -1578,7 +1578,7 @@ MachoMenuButton(PlayerTabSections[2], " (1) outfit ", function()
     WhiteFodoDrip()
 end)
 
-MachoMenuButton(PlayerTabSections[2], " (2) outfit  ", function()
+MachoMenuButton(PlayerTabSections[2], "(2) outfit", function()
     function FodoMafia()
         local ped = PlayerPedId()
 
@@ -5855,6 +5855,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
