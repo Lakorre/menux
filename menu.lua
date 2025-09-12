@@ -1530,7 +1530,7 @@ end)
 
 local ModelNameHandle = MachoMenuInputbox(PlayerTabSections[2], "Model Name:", "...")
 
-MachoMenuButton(PlayerTabSections[2], "Change Model", function()
+MachoMenuButton(PlayerTabSections[2], "Change Model & outfit", function()
     local ModelName = MachoMenuGetInputbox(ModelNameHandle)
 
     if type(ModelName) == "string" and ModelName ~= "" then
@@ -1557,7 +1557,7 @@ MachoMenuButton(PlayerTabSections[2], "Change Model", function()
     end
 end)
 
-MachoMenuButton(PlayerTabSections[2], "Change Model to Freemode", function()
+MachoMenuButton(PlayerTabSections[2], "Freemode (so7)", function()
     local ModelName = "mp_m_freemode_01"
 
     local Code = string.format([[
@@ -1601,28 +1601,33 @@ MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
     WhiteFodoDrip()
 end)
 
-MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
+MachoMenuButton(PlayerTabSections[2], "(2) outfit", function()
     function WhiteFodoDrip()
         local ped = PlayerPedId()
 
         -- Jacket
-        SetPedComponentVariation(ped, 11, 109, 0, 2)
-        -- Shirt/Undershirt
-        SetPedComponentVariation(ped, 8, 15, 0, 2)
-        -- Hands
-        SetPedComponentVariation(ped, 3, 5, 0, 2)
-        -- Legs
-        SetPedComponentVariation(ped, 4, 56, 0, 2)
-        -- Shoes
-        SetPedComponentVariation(ped, 6, 19, 0, 2)
-        -- Hat
-        SetPedPropIndex(ped, 0, 1, 0, true)
+SetPedComponentVariation(ped, 11, 144, 2, 2)
+
+-- Undershirt 
+SetPedComponentVariation(ped, 8, 15, 0, 2)
+
+-- Hands 
+SetPedComponentVariation(ped, 3, 11, 0, 2)
+
+-- Pants 
+SetPedComponentVariation(ped, 4, 10, 0, 2)
+
+-- Shoes 
+SetPedComponentVariation(ped, 6, 10, 0, 2)
+
+-- Hat 
+SetPedPropIndex(ped, 0, 8, 0, true)
     end
 
     WhiteFodoDrip()
 end)
 
-MachoMenuButton(PlayerTabSections[2], "(2) outfit", function()
+MachoMenuButton(PlayerTabSections[2], "(3) outfit", function()
     function FodoMafia()
         local ped = PlayerPedId()
 
@@ -5899,6 +5904,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
