@@ -1785,21 +1785,21 @@ end)
 
 MachoMenuButton(PlayerTabSections[3], "Clean Player (Water Wash)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        local function WaterCleanPlayer()
-            local ped = PlayerPedId()
+        local ped = PlayerPedId()
 
-            if IsPedSwimming(ped) then
-                ClearPedBloodDamage(ped)
-                ClearPedWetness(ped)
-                ClearPedEnvironmentalDamage(ped)
-                ResetPedVisibleDamage(ped)
-            end
+        -- يتأكد اللاعب داخل موية أو مبلّل
+        if IsEntityInWater(ped) or IsPedSwimming(ped) then
+            -- يمسح الدم
+            ClearPedBloodDamage(ped)
+            -- يمسح تأثير البلل
+            ClearPedWetness(ped)
+            -- يمسح الأوساخ البيئية
+            ClearPedEnvDirt(ped)
+            -- يمسح الأوساخ المرئية
+            ResetPedVisibleDamage(ped)
         end
-
-        WaterCleanPlayer()
     ]])
 end)
-
 
 
 -- Server Tab
@@ -5926,6 +5926,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
