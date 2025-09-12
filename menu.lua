@@ -1633,7 +1633,7 @@ MachoMenuButton(PlayerTabSections[2], "(3) outfit", function()
     FodoMafia()
 end)
  
-MachoMenuSlider(PlayerTabSections[3], "Health", initialHealth, 1, 100, " pts", 1, function(value)
+MachoMenuSlider(PlayerTabSections[3], "Health", initialHealth, 1, 10, " pts", 1, function(value)
     SetEntityHealth(PlayerPedId(), value)
 end)
 
@@ -5931,6 +5931,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
