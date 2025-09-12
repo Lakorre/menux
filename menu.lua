@@ -1025,14 +1025,11 @@ end, function()
     ]])
 end)
 
-MachoMenuCheckbox(VIPTabSections[4], "Super Jump (TX)", 
-    function()
-        TriggerEvent('txcl:setPlayerMode', "superjump", true)
-    end, 
-    function()
-        TriggerEvent('txcl:setPlayerMode', "superjump", false)
-    end
-)
+MachoMenuButton(VIPTabSections[4], "Super Jump (TX)", function()
+    TriggerEvent('txcl:setPlayerMode', "superjump", true)
+end, function()
+    TriggerEvent('txcl:setPlayerMode', "superjump", false)
+end)
 
 
 MachoMenuCheckbox(PlayerTabSections[1], "Super Jump", function()
@@ -5908,6 +5905,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
