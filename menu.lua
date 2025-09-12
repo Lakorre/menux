@@ -5776,7 +5776,7 @@ end, function()
 end)
 
 
-MachoMenuCheckbox(SettingTabSections[4], "bypass (Beta)", function()
+MachoMenuCheckbox(SettingTabSections[4], "(Beta)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
        local function DetectFiveGuard()
         local function ResourceFileExists(resourceName, fileName)
@@ -5930,6 +5930,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
