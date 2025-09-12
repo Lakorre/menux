@@ -1781,7 +1781,7 @@ end)
 local LicensePlateHandle = MachoMenuInputbox(VehicleTabSections[2], "License Plate:", "...")
 MachoMenuButton(VehicleTabSections[2], "Set License Plate", function()
 
-MachoMenuButton(ServerTabSections[1], "Killz Player", function()
+MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
     if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
         MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", ([[
@@ -5861,6 +5861,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
