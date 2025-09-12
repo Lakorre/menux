@@ -359,6 +359,7 @@ local function SettingTabContent(tab)
     
     local rightX = leftX + ColumnWidth + SectionsPadding
     local SectionThree = MachoMenuGroup(tab, "Server Settings + bypass", rightX, SectionsPadding + MachoPanelGap, rightX + ColumnWidth, SectionChildHeight)
+    local SectionFour = MachoMenuGroup(tab, "Event Payloads", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
 
     return SectionOne, SectionTwo, SectionThree
 end
@@ -5885,6 +5886,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
