@@ -1777,7 +1777,9 @@ end)
 
 -- Server Tab
 
-local ModelNameHandle = MachoMenuInputbox(PlayerTabSections[2], "id Player :", "...")
+
+local LicensePlateHandle = MachoMenuInputbox(VehicleTabSections[2], "License Plate:", "...")
+MachoMenuButton(VehicleTabSections[2], "Set License Plate", function()
 
 MachoMenuButton(ServerTabSections[1], "Killz Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
@@ -5859,6 +5861,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
