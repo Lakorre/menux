@@ -5638,6 +5638,14 @@ MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     end
 end)
 
+MachoMenuButton(VIPTabSections[4], "Heal (TX)", function()
+    if not HasValidKey() then return end
+
+    MachoInjectResource("any", [[
+        TriggerEvent('txcl:heal', -1)
+    ]])
+end)
+
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
 --     if not HasValidKey() then return end
     
@@ -5954,6 +5962,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
