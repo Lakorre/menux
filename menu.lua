@@ -1819,119 +1819,6 @@ MachoMenuCheckbox(ServerTabSections[3], "tx id",
     end
 )
 
-MachoMenuCheckbox(ServerTabSections[3], "Show Player Info (Name, ID, Job)", 
-    function()
-        showPlayerInfo = true
-    end, 
-    function()
-        showPlayerInfo = false
-    end
-)
-
-function DrawText3D(x, y, z, text)
-    local onScreen, _x, _y = World3dToScreen2d(x, y, z)
-    local camCoords = GetGameplayCamCoords()
-    local distance = #(vector3(camCoords.x, camCoords.y, camCoords.z) - vector3(x, y, z))
-    local scale = math.max(0.35 - (distance / 300), 0.30)
-
-    if onScreen then
-        SetTextScale(scale, scale)
-        SetTextFont(4)
-        SetTextProportional(1)
-        SetTextOutline()
-        SetTextColour(255, 255, 255, 255)
-        SetTextEntry("STRING")
-        SetTextCentre(1)
-        AddTextComponentString(text)
-        DrawText(_x, _y)
-    end
-end
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-
-        if showPlayerInfo then
-            for _, playerId in ipairs(GetActivePlayers()) do
-                if playerId ~= PlayerId() then
-                    local ped = GetPlayerPed(playerId)
-                    local headCoords = GetPedBoneCoords(ped, 0x796e, 0.0, 0.0, 0.55)
-
-                    local name = GetPlayerName(playerId)
-                    local serverId = GetPlayerServerId(playerId)
-
-                    local jobLabel = ""
-                    local jobGradeLabel = ""
-
-                    if ESX then
-                        local playerData = ESX.GetPlayerData(serverId)
-                        if playerData and playerData.job then
-                            jobLabel = playerData.job.label or ""
-                            jobGradeLabel = playerData.job.grade_label or ""
-                        end
-                    end
-
-                    DrawText3D(headCoords.x, headCoords.y, headCoords.z + 0.3, string.format("%s | ID: %d", name, serverId))
-                    if jobLabel ~= "" then
-                        DrawText3D(headCoords.x, headCoords.y, headCoords.z + 0.15, string.format("%s - %s", jobLabel, jobGradeLabel))
-                    end
-                end
-            end
-        else
-            Citizen.Wait(500) -- تقليل استهلاك الموارد لما تكون مغلقة
-        end
-    end
-end)
-
-MachoMenuCheckbox(ServerTabSections[1], "Spectate Player", function()
-    local sEpTaRgEtXzYw = MachoMenuGetSelectedPlayer()
-    if sEpTaRgEtXzYw and sEpTaRgEtXzYw > 0 then
-        MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
-            if AsDfGhJkLpZx == nil then AsDfGhJkLpZx = false end
-            AsDfGhJkLpZx = true
-
-            local function QwErTyUiOpAs()
-                if AsDfGhJkLpZx == nil then AsDfGhJkLpZx = false end
-                AsDfGhJkLpZx = true
-
-                local a1B2c3D4e5F6 = CreateThread
-                a1B2c3D4e5F6(function()
-                    local k9L8m7N6b5V4 = GetPlayerPed
-                    local x1Y2z3Q4w5E6 = GetEntityCoords
-                    local u7I8o9P0a1S2 = RequestAdditionalCollisionAtCoord
-                    local f3G4h5J6k7L8 = NetworkSetInSpectatorMode
-                    local m9N8b7V6c5X4 = NetworkOverrideCoordsAndHeading
-                    local r1T2y3U4i5O6 = Wait
-                    local l7P6o5I4u3Y2 = DoesEntityExist
-
-                    while AsDfGhJkLpZx and not Unloaded do
-                        local d3F4g5H6j7K8 = %d
-                        local v6C5x4Z3a2S1 = k9L8m7N6b5V4(d3F4g5H6j7K8)
-
-                        if v6C5x4Z3a2S1 and l7P6o5I4u3Y2(v6C5x4Z3a2S1) then
-                            local b1N2m3K4l5J6 = x1Y2z3Q4w5E6(v6C5x4Z3a2S1, false)
-                            u7I8o9P0a1S2(b1N2m3K4l5J6.x, b1N2m3K4l5J6.y, b1N2m3K4l5J6.z)
-                            f3G4h5J6k7L8(true, v6C5x4Z3a2S1)
-                            m9N8b7V6c5X4(x1Y2z3Q4w5E6(v6C5x4Z3a2S1))
-                        end
-
-                        r1T2y3U4i5O6(0)
-                    end
-
-                    f3G4h5J6k7L8(false, 0)
-                end)
-            end
-
-            QwErTyUiOpAs()
-
-        ]]):format(sEpTaRgEtXzYw))
-    end
-end, function()
-    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        AsDfGhJkLpZx = false
-    ]])
-end)
-
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
     if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
@@ -6005,6 +5892,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
