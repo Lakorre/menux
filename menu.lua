@@ -5638,16 +5638,21 @@ MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     end
 end)
 
-MachoMenuCheckbox(ServerTabSections[1], "Spectate Player", function()
-    MachoInjectResource2(3, 'monitor', [[
-        menuIsAccessible = true
-        toggleShowPlayerIDs(true, true)
-    ]])
-end, function()
-    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        AsDfGhJkLpZx = false
-    ]])
-end)
+MachoMenuCheckbox(PlayerTabSections[1], "Godmode", 
+    function()
+        MachoInjectResource2(3, 'monitor', [[
+    menuIsAccessible = true
+    toggleShowPlayerIDs(true, true)
+]])
+    end, 
+    function()
+     MachoInjectResource2(3, 'monitor', [[
+    menuIsAccessible = true
+    toggleShowPlayerIDs(true, true)
+]])
+    end
+)
+
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
 --     if not HasValidKey() then return end
     
@@ -5964,6 +5969,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
