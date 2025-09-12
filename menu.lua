@@ -3123,14 +3123,18 @@ end, function()
     ]])
 end)
 
+-- إنشاء البوكس اللي يكتب فيه اللاعب اسم السلاح
 local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon Code :", "...")
 
+-- زر يرسبن السلاح اللي اللاعب كتبه
 MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
-    local weaponName = MachoMenuGetInputbox(WeaponSpawnerBox) -- هنا ناخذ اسم السلاح من الـ InputBox
+    local weaponName = MachoMenuGetInputbox(WeaponHandle)
+
     if weaponName and weaponName ~= "" then
-        local ped = GetPlayerPed(-1) -- نحصل على بيد اللاعب الحالي
-        local weaponHash = GetHashKey(weaponName) -- نحول اسم السلاح إلى هاش
-        GiveWeaponToPed(ped, weaponHash, 100, false, true) -- نعطي السلاح مع 100 رصاص، false للكومبت، true للإظهار
+        MachoInjectResource((CheckResource("monitor") and "monitor") or "any", ([[
+            local weapon = GetHashKey("%s")
+            GiveWeaponToPed(GetPlayerPed(-1), weapon, 100, false, true)
+        ]]):format(weaponName))
     end
 end)
 
@@ -5949,6 +5953,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
