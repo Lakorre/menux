@@ -250,7 +250,7 @@ local function PlayerTabContent(tab)
     local SectionOne = MachoMenuGroup(tab, "Self", leftX, topY, leftX + ColumnWidth, topY + totalRightHeight)
 
     local SectionTwo = MachoMenuGroup(tab, "Model Changer & outfit", rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
-    local SectionThree = MachoMenuGroup(tab, "Functions", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
+    local SectionThree = MachoMenuGroup(tab, "Player Options", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
 
     return SectionOne, SectionTwo, SectionThree
 end
@@ -5926,6 +5926,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
