@@ -1634,6 +1634,7 @@ MachoMenuButton(PlayerTabSections[2], "(3) outfit", function()
 end)
 
 
+
 MachoMenuButton(PlayerTabSections[3], "Heal", function()
     SetEntityHealth(PlayerPedId(), 200)
 end)
@@ -1747,7 +1748,7 @@ MachoMenuButton(PlayerTabSections[3], "Clear Vision", function()
     ]])
 end)
 
-MachoMenuButton(PlayerTabSections[3], "Randomize Outfit", function()
+MachoMenuButton(PlayerTabSections[2], "Randomize Outfit", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         local function UxrKYLp378()
             local UwEsDxCfVbGtHy = PlayerPedId
@@ -5931,6 +5932,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
