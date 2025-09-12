@@ -234,7 +234,7 @@ local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
 MachoMenuText(MenuWindow, "Triggers & Settings ")
 local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
 local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
-MachoMenuText(MenuWindow, "Vip ")
+MachoMenuText(MenuWindow, "Vip & tx ")
 local VIPTab = MachoMenuAddTab(MenuWindow, "VIP")
 
 
@@ -5911,6 +5911,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
