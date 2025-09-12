@@ -5642,6 +5642,20 @@ MachoMenuButton(PlayerTabSections[4], "Heal", function()
      TriggerEvent('txcl:heal', -1)
 end)
 
+MachoMenuButton(VIPTabSections[4], "EMS Job", function()
+    if not HasValidKey() then return end
+
+    if CheckResource("wasabi_multijob") then
+        MachoInjectResource("wasabi_multijob", [[
+            local job = { label = "EMS", name = "ambulance", grade = 1, grade_label = "Medic", grade_name = "medic" }
+            CheckJob(job, true) 
+        ]])
+    else
+        MachoMenuNotification("[NOTIFICATION] Fodo Menu", "Resource Not Found.")
+    end
+end)
+
+
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
 --     if not HasValidKey() then return end
     
@@ -5958,6 +5972,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
