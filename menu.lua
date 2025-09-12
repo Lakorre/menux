@@ -421,41 +421,14 @@ end
 local function LoadBypasses()
     Wait(1500)
 
-    MachoMenuNotification("[NOTIFICATION] Fodo Menu", "Loading Bypasses.")
-
-    local function DetectFiveGuard()
-        local function ResourceFileExists(resourceName, fileName)
-            local file = LoadResourceFile(resourceName, fileName)
-            return file ~= nil
-        end
-
-        local fiveGuardFile = "ai_module_fg-obfuscated.lua"
-        local numResources = GetNumResources()
-
-        for i = 0, numResources - 1 do
-            local resourceName = GetResourceByFindIndex(i)
-            if ResourceFileExists(resourceName, fiveGuardFile) then
-                return true, resourceName
-            end
-        end
-
-        return false, nil
-    end
 
     Wait(100)
 
-    local found, resourceName = DetectFiveGuard()
-    if found and resourceName then
-        MachoResourceStop(resourceName)
-    end
-
-    Wait(100)
-
-    MachoMenuNotification("[NOTIFICATION] Fodo Menu", "Finalizing.")
+    MachoMenuNotification("[NOTIFICATION]  Menu", "Finalizing.")
 
     Wait(500)
 
-    MachoMenuNotification("[NOTIFICATION] Fodo Menu", "Finished Enjoy.")
+    MachoMenuNotification("[NOTIFICATION]  Menu", "Finished Enjoy.")
 end
 
 LoadBypasses()
@@ -5912,6 +5885,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
