@@ -1804,20 +1804,6 @@ end)
 
 -- Server Tab
 
-local ThirdSection = MachoMenuGroup(MenuWindow, "Troll Players By ID", 10, 10, 580, 300)
-
--- إنشاء خانة الإدخال للاعب
-local TargetPlayerIDInput = MachoMenuInputbox(ThirdSection, "Target Player ID", "Enter Player ID:")
-
--- زر يطبع رقم اللاعب أو يستخدمه لأي وظيفة تريد
-MachoMenuButton(ThirdSection, "Execute Action", function()
-    local playerID = MachoMenuGetInputbox(TargetPlayerIDInput)
-    print("Target Player ID is: " .. playerID)
-    
-    -- هنا تقدر تستخدم الـplayerID لأي وظيفة مثل تطبيق هجوم، تريل، أو غيره
-end)
-
-
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
     if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
@@ -5952,6 +5938,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
