@@ -2253,33 +2253,6 @@ end, function()
     ]])
 end)
 
-local LicensePlateHandle = MachoMenuInputbox(VehicleTabSections[2], "License Plate:", "...")
-MachoMenuButton(VehicleTabSections[2], "Set License Plate", function()
-    local LicensePlate = MachoMenuGetInputbox(LicensePlateHandle)
-
-    if type(LicensePlate) == "string" and LicensePlate ~= "" then
-        local injectedCode = string.format([[
-            local function xKqLZVwPt9()
-                local XcVbNmAsDfGhJkL = PlayerPedId
-                local TyUiOpZxCvBnMzLk = GetVehiclePedIsIn
-                local PoIuYtReWqAzXsDc = _G.SetVehicleNumberPlateText
-
-                local pEd = XcVbNmAsDfGhJkL()
-                local vEh = TyUiOpZxCvBnMzLk(pEd, false)
-
-                if vEh and vEh ~= 0 then
-                    PoIuYtReWqAzXsDc(vEh, "%s")
-                end
-
-            end
-
-            xKqLZVwPt9()
-        ]], LicensePlate)
-
-        MachoInjectResource(CheckResource("monitor") and "monitor" or "any", injectedCode)
-    end
-end)
-
 
 -- MachoMenuButton(ServerTabSections[2], "Crash Nearby [Don't Spam]", function()
 --     MachoInjectResource((CheckResource("ReaperV4") and "ReaperV4") or (CheckResource("FiniAC") and "FiniAC") or (CheckResource("WaveShield") and "WaveShield") or (CheckResource("monitor") and "monitor") or "any", [[
@@ -5885,6 +5858,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
