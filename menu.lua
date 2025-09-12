@@ -271,9 +271,6 @@ local SectionTwo = MachoMenuGroup(tab, "Plate & Spawning", leftX, midY, leftX + 
     return SectionOne, SectionTwo, SectionThree
 end
 
-    return SectionOne, SectionTwo
-end
-
 local function TeleportTabContent(tab)
     local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 3)) / 2
     local SectionOneStartX = TabsBarWidth + SectionsPadding
