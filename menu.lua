@@ -1530,7 +1530,7 @@ end)
 
 local ModelNameHandle = MachoMenuInputbox(PlayerTabSections[2], "Model Name:", "...")
 
-MachoMenuButton(PlayerTabSections[2], "Change Model & outfit", function()
+MachoMenuButton(PlayerTabSections[2], "Change Model", function()
     local ModelName = MachoMenuGetInputbox(ModelNameHandle)
 
     if type(ModelName) == "string" and ModelName ~= "" then
@@ -5912,6 +5912,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
