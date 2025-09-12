@@ -3123,28 +3123,22 @@ end, function()
     ]])
 end)
 
-local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon:", "...")
+local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon Code :", "...")
 
 MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
     local weaponName = MachoMenuGetInputbox(WeaponSpawnerBox)
 
     if weaponName and weaponName ~= "" then
-        MachoInjectResource((CheckResource("monitor") and "monitor") or "any", string.format([[
-            local function GiveWeapon()
-                local ped = PlayerPedId()
-                local weapon = GetHashKey("%s")
-                local XeCwVrBtNuMyLk = GiveWeaponToPed
-                XeCwVrBtNuMyLk(ped, weapon, 250, true, true)
-            end
-
-            GiveWeapon()
-        ]], weaponName))
+        local ped = GetPlayerPed(-1)
+        local weaponHash = GetHashKey(weaponName)
+        GiveWeaponToPed(ped, weaponHash, 100, false, true)
     end
 end)
 
-local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon:", "...")
 
-MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
+local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "x:", "...")
+
+MachoMenuButton(WeaponTabSections[2], "Spawn Weapon (Some servers) ", function()
     local weaponName = MachoMenuGetInputbox(WeaponSpawnerBox)
 
     if weaponName and weaponName ~= "" then
@@ -5957,6 +5951,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
