@@ -187,10 +187,10 @@ end
 
 
 -- Menu Builder
-local MenuSize = vec2(750, 500)
-local MenuStartCoords = vec2(500, 500)
+local MenuSize = vec2(850, 600) -- 
+local MenuStartCoords = vec2(400, 300) -- 
 
-local TabsBarWidth = 150
+local TabsBarWidth = 180 -- 
 local SectionsPadding = 10
 local MachoPanelGap = 15
 
@@ -5856,4 +5856,5 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
