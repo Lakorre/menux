@@ -221,19 +221,14 @@ MachoMenuText(MenuWindow, "V.z2")
 -- end
 
 -- CreateRainbowInterface()
-MachoMenuText(MenuWindow, "Self & Server")
 local PlayerTab = MachoMenuAddTab(MenuWindow, "Self")
 local ServerTab = MachoMenuAddTab(MenuWindow, "Server")
-MachoMenuText(MenuWindow, "Teleport & Vehicle")
-local WeaponTab = MachoMenuAddTab(MenuWindow, "Teleport")
-local VehicleTab = MachoMenuAddTab(MenuWindow, "Vehicle")
-MachoMenuText(MenuWindow, "Weapon & Animations")
-local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
+local TeleportTab = MachoMenuAddTab(MenuWindow, "Teleport")
 local WeaponTab = MachoMenuAddTab(MenuWindow, "Weapon")
-MachoMenuText(MenuWindow, "Triggers & Settings+tx ")
+local VehicleTab = MachoMenuAddTab(MenuWindow, "Vehicle")
+local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
 local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
-local SettingTab = MachoMenuAddTab(MenuWindow, "Settings+tx")
-MachoMenuText(MenuWindow, "Vip ")
+local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
 local VIPTab = MachoMenuAddTab(MenuWindow, "VIP")
 
 
@@ -374,6 +369,7 @@ local EmoteTabSections = { EmoteTabContent(EmoteTab) }
 local EventTabSections = { EventTabContent(EventTab) }
 local VIPTabSections = { VIPTabContent(VIPTab) }
 local SettingTabSections = { SettingTabContent(SettingTab) }
+
 
 -- Functions
 local function CheckResource(resource)
@@ -5856,6 +5852,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
