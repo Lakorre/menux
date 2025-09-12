@@ -5594,16 +5594,17 @@ MachoMenuCheckbox(VIPTabSections[4], "godmode",
 MachoMenuCheckbox(VIPTabSections[4], "tx id", 
     function()
         MachoInjectResource2(3, 'monitor', [[
-    menuIsAccessible = true
-    toggleShowPlayerIDs(true, true)
-]])
+            menuIsAccessible = true
+            toggleShowPlayerIDs(true, true)
+        ]])
     end, 
     function()
-       MachoInjectResource2(3, 'monitor', [[
-    toggleShowPlayerIDs(false, false)
-]])
+        MachoInjectResource2(3, 'monitor', [[
+            toggleShowPlayerIDs(false, false)
+        ]])
     end
 )
+
 
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
 --     if not HasValidKey() then return end
@@ -5921,6 +5922,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
