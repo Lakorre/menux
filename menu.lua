@@ -221,14 +221,19 @@ MachoMenuText(MenuWindow, "V.Xz2")
 -- end
 
 -- CreateRainbowInterface()
+MachoMenuText(MenuWindow, "Self & Server")
 local PlayerTab = MachoMenuAddTab(MenuWindow, "Self")
 local ServerTab = MachoMenuAddTab(MenuWindow, "Server")
+MachoMenuText(MenuWindow, "Teleport & Vehicle")
 local TeleportTab = MachoMenuAddTab(MenuWindow, "Teleport")
-local WeaponTab = MachoMenuAddTab(MenuWindow, "Weapon")
 local VehicleTab = MachoMenuAddTab(MenuWindow, "Vehicle")
+MachoMenuText(MenuWindow, "Weapon & Animations")
+local WeaponTab = MachoMenuAddTab(MenuWindow, "Weapon")
 local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
+MachoMenuText(MenuWindow, "Triggers & Settings ")
 local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
 local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
+MachoMenuText(MenuWindow, "Vip ")
 local VIPTab = MachoMenuAddTab(MenuWindow, "VIP")
 
 
@@ -5852,6 +5857,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
