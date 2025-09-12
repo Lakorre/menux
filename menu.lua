@@ -1621,7 +1621,7 @@ SetPedComponentVariation(ped, 4, 10, 0, 2)
 SetPedComponentVariation(ped, 6, 10, 0, 2)
 
 -- Hat 
-SetPedPropIndex(ped, 0, 8, 0, true)
+SetPedPropIndex(ped, 0, 25, 0, true)
     end
 
     WhiteFodoDrip()
@@ -5904,6 +5904,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
