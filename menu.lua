@@ -1617,7 +1617,6 @@ MachoMenuButton(PlayerTabSections[3], "Thirst & Hunger", function()
 
         DawrjatjsfAW()
     ]])
-end)
 
  MachoInjectResource2(3, CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         local function sWj238fsMAw()
@@ -5856,5 +5855,6 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
