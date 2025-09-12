@@ -236,7 +236,7 @@ local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
 local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
 MachoMenuText(MenuWindow, "Vip ")
 local VIPTab = MachoMenuAddTab(MenuWindow, "VIP + tx")
-
+local VIPTab = MachoMenuAddTab(MenuWindow, " tx")
 
 -- Tab Content
 local function PlayerTabContent(tab)
@@ -367,6 +367,22 @@ local function SettingTabContent(tab)
 end
 
 
+local function PlayerTabContent(tab)
+    local leftX = TabsBarWidth + SectionsPadding
+    local topY = SectionsPadding + MachoPanelGap
+    local midY = topY + HalfHeight + SectionsPadding
+    local rightX = leftX + ColumnWidth + SectionsPadding
+
+    local totalRightHeight = (HalfHeight * 2) + SectionsPadding
+
+    local SectionOne = MachoMenuGroup(tab, "Self", leftX, topY, leftX + ColumnWidth, topY + totalRightHeight)
+
+    local SectionTwo = MachoMenuGroup(tab, "Model Changer & outfit", rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
+    local SectionThree = MachoMenuGroup(tab, "Player Options", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
+
+    return SectionOne, SectionTwo, SectionThree
+end
+
 -- Tab Sections
 local PlayerTabSections = { PlayerTabContent(PlayerTab) }
 local ServerTabSections = { ServerTabContent(ServerTab) }
@@ -377,7 +393,7 @@ local EmoteTabSections = { EmoteTabContent(EmoteTab) }
 local EventTabSections = { EventTabContent(EventTab) }
 local VIPTabSections = { VIPTabContent(VIPTab) }
 local SettingTabSections = { SettingTabContent(SettingTab) }
-
+local txTabSections = { txTabContent(txTab) }
 
 -- Functions
 local function CheckResource(resource)
@@ -5953,6 +5969,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
