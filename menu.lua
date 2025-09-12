@@ -247,7 +247,7 @@ local function PlayerTabContent(tab)
 
     local SectionOne = MachoMenuGroup(tab, "Self", leftX, topY, leftX + ColumnWidth, topY + totalRightHeight)
 
-    local SectionTwo = MachoMenuGroup(tab, "Model Changer", rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
+    local SectionTwo = MachoMenuGroup(tab, "Model Changer & outfit", rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
     local SectionThree = MachoMenuGroup(tab, "Functions", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
 
     return SectionOne, SectionTwo, SectionThree
@@ -1584,18 +1584,26 @@ MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
     function WhiteFodoDrip()
         local ped = PlayerPedId()
 
-        -- Jacket
-        SetPedComponentVariation(ped, 11, 109, 0, 2)
-        -- Shirt/Undershirt
-        SetPedComponentVariation(ped, 8, 15, 0, 2)
-        -- Hands
-        SetPedComponentVariation(ped, 3, 5, 0, 2)
-        -- Legs
-        SetPedComponentVariation(ped, 4, 56, 0, 2)
-        -- Shoes
-        SetPedComponentVariation(ped, 6, 19, 0, 2)
-        -- Hat
-        SetPedPropIndex(ped, 0, 1, 0, true)
+      -- Jacket 
+SetPedComponentVariation(ped, 11, 52, 0, 2)
+
+-- Undershirt 
+SetPedComponentVariation(ped, 8, 15, 0, 2)
+
+-- Hands
+SetPedComponentVariation(ped, 3, 15, 0, 2)
+
+-- Pants 
+SetPedComponentVariation(ped, 4, 10, 0, 2)
+
+-- Shoes 
+SetPedComponentVariation(ped, 6, 24, 0, 2)
+
+-- Hat
+SetPedPropIndex(ped, 0, 2, 0, true)
+
+-- Glasses 
+SetPedPropIndex(ped, 1, 2, 0, true)
     end
 
     WhiteFodoDrip()
@@ -5904,6 +5912,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
