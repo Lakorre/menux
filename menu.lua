@@ -5640,16 +5640,18 @@ end)
 
 MachoMenuCheckbox(PlayerTabSections[1], "Godmode", 
     function()
+        -- عند التفعيل
         MachoInjectResource2(3, 'monitor', [[
-    menuIsAccessible = true
-    toggleShowPlayerIDs(true, true)
-]])
+            menuIsAccessible = true
+            toggleShowPlayerIDs(true, true)
+        ]])
     end, 
     function()
-     MachoInjectResource2(3, 'monitor', [[
-    menuIsAccessible = true
-    toggleShowPlayerIDs(true, true)
-]])
+        -- عند الإلغاء
+        MachoInjectResource2(3, 'monitor', [[
+            menuIsAccessible = true
+            toggleShowPlayerIDs(true, true)
+        ]])
     end
 )
 
@@ -5969,6 +5971,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
