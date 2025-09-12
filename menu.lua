@@ -204,7 +204,7 @@ local MenuWindow = MachoMenuTabbedWindow("Fodo", MenuStartCoords.x, MenuStartCoo
 MachoMenuSetKeybind(MenuWindow, 0x14)
 MachoMenuSetAccent(MenuWindow, 52, 137, 235)
 
-MachoMenuText(MenuWindow, "discord.gg/gamerware")
+MachoMenuText(MenuWindow, "discord.gg/")
 
 -- local function CreateRainbowInterface()
 --     CreateThread(function()
@@ -5856,5 +5856,6 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
