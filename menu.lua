@@ -5578,7 +5578,7 @@ MachoMenuCheckbox(VIPTabSections[4], "noclip",
         TriggerEvent('txcl:setPlayerMode', "noclip", true)
     end, 
     function()
-        TriggerEvent('txcl:setPlayerMode', "godmode", true)
+        TriggerEvent('txcl:setPlayerMode', "noclip", false)
     end
 )
 
