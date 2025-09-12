@@ -1678,24 +1678,6 @@ MachoMenuButton(PlayerTabSections[3], "Armor", function()
     SetPedArmour(PlayerPedId(), 100)
 end)
 
-MachoMenuButton(PlayerTabSections[3], "Thirst & Hunger", function()
-    MachoInjectResource2(3, CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        local function DawrjatjsfAW()
-            TriggerEvent('esx_status:set', 'hunger', 1000000)
-        end
-
-        DawrjatjsfAW()
-    ]])
-
- MachoInjectResource2(3, CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        local function sWj238fsMAw()
-            TriggerEvent('esx_status:set', 'thirst', 1000000)
-        end
-
-        sWj238fsMAw()
-    ]])
-end)
-
 
 MachoMenuButton(PlayerTabSections[3], "Revive", function()
     MachoInjectResource2(3, CheckResource("ox_inventory") and "ox_inventory" or CheckResource("ox_lib") and "ox_lib" or CheckResource("es_extended") and "es_extended" or CheckResource("qb-core") and "qb-core" or CheckResource("wasabi_ambulance") and "wasabi_ambulance" or CheckResource("ak47_ambulancejob") and "ak47_ambulancejob" or CheckResource("oxmysql") and "oxmysql" or "any", [[
@@ -1733,6 +1715,24 @@ MachoMenuButton(PlayerTabSections[3], "Revive", function()
         end
 
         AcjU5NQzKw()
+    ]])
+end)
+
+MachoMenuButton(PlayerTabSections[3], "Thirst & Hunger", function()
+    MachoInjectResource2(3, CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        local function DawrjatjsfAW()
+            TriggerEvent('esx_status:set', 'hunger', 1000000)
+        end
+
+        DawrjatjsfAW()
+    ]])
+
+ MachoInjectResource2(3, CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        local function sWj238fsMAw()
+            TriggerEvent('esx_status:set', 'thirst', 1000000)
+        end
+
+        sWj238fsMAw()
     ]])
 end)
 
@@ -5926,6 +5926,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
