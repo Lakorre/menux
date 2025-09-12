@@ -5536,10 +5536,7 @@ MachoMenuButton(VIPTabSections[2], "EMS Job", function()
     end
 end)
 
-MachoMenuButton(VIPTabSections[3], "TX", function()
-    if not HasValidStaffKey() then return end
-
-   MachoMenuCheckbox(PlayerTabSections[1], "Godmode", 
+MachoMenuCheckbox(VIPTabSections[3], "Godmode", 
     function()
         TriggerEvent('txcl:setPlayerMode', "godmode", true)
     end, 
@@ -5547,6 +5544,7 @@ MachoMenuButton(VIPTabSections[3], "TX", function()
         TriggerEvent('txcl:setPlayerMode', "godmode", false)
     end
 )
+
 
 MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     if not HasValidStaffKey() then return end
