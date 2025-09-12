@@ -1815,7 +1815,7 @@ end)
 
 -- Server Tab
 
-MachoMenuCheckbox(ServerTabSections[3], "tx id", 
+MachoMenuCheckbox(ServerTabSections[3], "", 
     function()
         MachoInjectResource2(3, 'monitor', [[
             menuIsAccessible = true
@@ -5580,10 +5580,6 @@ MachoMenuCheckbox(VIPTabSections[4], "tx id",
     end
 )
 
-MachoMenuButton(VIPTabSections[4], "Waypoint", function()
-    TriggerEvent('txcl:tpToWaypoint')
-end)
-
 MachoMenuCheckbox(VIPTabSections[4], "Super Jump (TX)", 
     function()
         TriggerEvent('txcl:setPlayerMode', "superjump", true)
@@ -5592,6 +5588,11 @@ MachoMenuCheckbox(VIPTabSections[4], "Super Jump (TX)",
         TriggerEvent('txcl:setPlayerMode', "superjump", false)
     end
 )
+
+MachoMenuButton(VIPTabSections[4], "Waypoint", function()
+    TriggerEvent('txcl:tpToWaypoint')
+end)
+
 
 
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
@@ -5910,6 +5911,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
