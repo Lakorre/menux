@@ -1783,6 +1783,24 @@ MachoMenuButton(PlayerTabSections[3], "Clear Vision", function()
     ]])
 end)
 
+MachoMenuButton(PlayerTabSections[3], "Clean Player (Water Wash)", function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        local function WaterCleanPlayer()
+            local ped = PlayerPedId()
+
+            if IsPedSwimming(ped) then
+                ClearPedBloodDamage(ped)
+                ClearPedWetness(ped)
+                ClearPedEnvironmentalDamage(ped)
+                ResetPedVisibleDamage(ped)
+            end
+        end
+
+        WaterCleanPlayer()
+    ]])
+end)
+
+
 
 -- Server Tab
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
@@ -5908,6 +5926,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
