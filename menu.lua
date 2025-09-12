@@ -5638,14 +5638,11 @@ MachoMenuButton(VIPTabSections[3], "Staff (2) (BETA) - Announce", function()
     end
 end)
 
-MachoMenuCheckbox(VIPTabSections[4], "id Player", function()
-    local sEpTaRgEtXzYw = MachoMenuGetSelectedPlayer()
-    if sEpTaRgEtXzYw and sEpTaRgEtXzYw > 0 then
-      MachoInjectResource2(3, 'monitor', [[
-    menuIsAccessible = true
-    toggleShowPlayerIDs(true, true)
-]])
-    end
+MachoMenuCheckbox(ServerTabSections[1], "Spectate Player", function()
+    MachoInjectResource2(3, 'monitor', [[
+        menuIsAccessible = true
+        toggleShowPlayerIDs(true, true)
+    ]])
 end, function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         AsDfGhJkLpZx = false
@@ -5967,6 +5964,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
