@@ -5915,6 +5915,20 @@ end, function()
 end)
 
 
+MachoMenuButton(SettingTabSections[1], "close", function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        Unloaded = true
+    ]])
+
+    MachoInjectResource((CheckResource("core") and "core") or (CheckResource("es_extended") and "es_extended") or (CheckResource("qb-core") and "qb-core") or (CheckResource("monitor") and "monitor") or "any", [[
+        anvzBDyUbl = false
+        if fLwYqKoXpRtB then fLwYqKoXpRtB() end
+        kLpMnBvCxZqWeRt = false
+    ]])
+
+    MachoMenuDestroy(MenuWindow)
+end)
+
 
 
 
