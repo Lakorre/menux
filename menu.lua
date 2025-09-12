@@ -1779,7 +1779,7 @@ end)
 
 local ModelNameHandle = MachoMenuInputbox(PlayerTabSections[2], "id Player :", "...")
 
-MachoMenuButton(ServerTabSections[1], "Kill Player", function()
+MachoMenuButton(ServerTabSections[1], "Killz Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
     if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
         MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", ([[
@@ -5859,6 +5859,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
