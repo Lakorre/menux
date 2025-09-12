@@ -358,7 +358,7 @@ local function SettingTabContent(tab)
     local SectionTwo = MachoMenuGroup(tab, "Menu Design", leftX, midY, leftX + ColumnWidth, midY + HalfHeight)
 
     local rightX = leftX + ColumnWidth + SectionsPadding
-    local SectionThree = MachoMenuGroup(tab, "Server Settings", rightX, SectionsPadding + MachoPanelGap, rightX + ColumnWidth, SectionChildHeight)
+    local SectionThree = MachoMenuGroup(tab, "Server Settings + bypass", rightX, SectionsPadding + MachoPanelGap, rightX + ColumnWidth, SectionChildHeight)
 
     return SectionOne, SectionTwo, SectionThree
 end
@@ -5886,6 +5886,10 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     notify("Framework: %s", frameworkName)
 end)
 
+MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
+
+    end
+end)
 
 MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
   local function DetectFiveGuard()
@@ -5914,6 +5918,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
         MachoResourceStop(resourceName)
     end
 end)
+
 
 
 
