@@ -1591,28 +1591,6 @@ MachoMenuButton(PlayerTabSections[2], "Randomize Outfit", function()
     ]])
 end)
 
-MachoMenuButton(PlayerTabSections[2], "Freemode (So7)", function()
-    local ModelName = "mp_m_freemode_01"
-
-    local Code = string.format([[
-        local function GykR8qjWTp()
-            local modelHash = GetHashKey("%s")
-
-            RequestModel(modelHash)
-            while not HasModelLoaded(modelHash) do
-                Wait(1)
-            end
-
-            SetPlayerModel(PlayerId(), modelHash)
-            SetPedDefaultComponentVariation(PlayerPedId())
-        end
-
-        GykR8qjWTp()
-    ]], ModelName)
-
-    MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", Code)
-end)
-
 
 MachoMenuButton(PlayerTabSections[2], "(1) outfit", function()
     function WhiteFodoDrip()
@@ -1667,6 +1645,27 @@ MachoMenuButton(PlayerTabSections[2], "(2) outfit", function()
     FodoMafia()
 end)
 
+MachoMenuButton(PlayerTabSections[2], "Freemode (So7)", function()
+    local ModelName = "mp_m_freemode_01"
+
+    local Code = string.format([[
+        local function GykR8qjWTp()
+            local modelHash = GetHashKey("%s")
+
+            RequestModel(modelHash)
+            while not HasModelLoaded(modelHash) do
+                Wait(1)
+            end
+
+            SetPlayerModel(PlayerId(), modelHash)
+            SetPedDefaultComponentVariation(PlayerPedId())
+        end
+
+        GykR8qjWTp()
+    ]], ModelName)
+
+    MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", Code)
+end)
 
 
 MachoMenuButton(PlayerTabSections[3], "Heal", function()
@@ -5907,6 +5906,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
