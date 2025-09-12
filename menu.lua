@@ -235,7 +235,7 @@ MachoMenuText(MenuWindow, "Triggers & Settings ")
 local EventTab = MachoMenuAddTab(MenuWindow, "Triggers")
 local SettingTab = MachoMenuAddTab(MenuWindow, "Settings")
 MachoMenuText(MenuWindow, "Vip ")
-local VIPTab = MachoMenuAddTab(MenuWindow, "VIP")
+local VIPTab = MachoMenuAddTab(MenuWindow, "VIP + tx")
 
 
 -- Tab Content
@@ -5953,6 +5953,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
