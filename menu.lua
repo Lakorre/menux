@@ -1638,8 +1638,8 @@ MachoMenuSlider(PlayerTabSections[3], "Health", initialHealth, 1, 100, " HP", 1,
 end)
 
 
-MachoMenuButton(PlayerTabSections[3], "Armor", function()
-    SetPedArmour(PlayerPedId(), 100)
+MachoMenuSlider(PlayerTabSections[3], "Health", initialHealth, 1, 100, " HP", 1, function(value)
+      SetPedArmour(PlayerPedId(), 100)
 end)
 
 MachoMenuButton(PlayerTabSections[3], "Thirst & Hunger", function()
@@ -5931,6 +5931,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
