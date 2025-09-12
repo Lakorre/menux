@@ -1074,7 +1074,7 @@ end, function()
     ]])
 end)
 
-MachoMenuCheckbox(PlayerTabSections[1], "Levitation", function()
+MachoMenuCheckbox(PlayerTabSections[1], "Jump Sky", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         -- make helpers global so other chunks can use them
         function ScaleVector(vect, mult)
@@ -5856,6 +5856,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
