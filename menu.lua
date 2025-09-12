@@ -1883,33 +1883,15 @@ MachoMenuButton(ServerTabSections[1], "Taze Player", function()
     end
 end)
 
-MachoMenuButton(ServerTabSections[1], "Force Ragdoll Player", function()
+MachoMenuButton(ServerTabSections[1], " 2 Force Ragdoll Player", function()
     local selectedPlayer = MachoMenuGetSelectedPlayer()
     if selectedPlayer and selectedPlayer > 0 then
         MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", ([[
-            local function ApplyRagdollToPlayer()
-                local targetPlayerId = %d
-                local ragdollTime1 = 5000 -- مدة الراغدول الأولى (5 ثواني)
-                local ragdollTime2 = 5000 -- مدة الراغدول الثانية (5 ثواني)
-                local ragdollType = 0
-                local abortIfInjured = false
-                local abortIfDead = false
-                local forceScriptControl = true
-
-                local threadFunc = CreateThread
-                threadFunc(function()
-                    Wait(0)
-                    local targetPed = GetPlayerPed(targetPlayerId)
-                    if not targetPed or not DoesEntityExist(targetPed) then return end
-                    
-                    SetPedToRagdoll(targetPed, ragdollTime1, ragdollTime2, ragdollType, abortIfInjured, abortIfDead, forceScriptControl)
-                end)
-            end
-
-            ApplyRagdollToPlayer()
+            TriggerClientEvent('forceRagdoll', %d)
         ]]):format(selectedPlayer))
     end
 end)
+
 
 
 MachoMenuButton(ServerTabSections[1], "Explode Player", function()
@@ -5955,6 +5937,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
