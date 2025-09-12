@@ -5110,7 +5110,7 @@ local FallbackResources = {
     "any"
 }
 
-MachoMenuButton(EventTabSections[4], "Execute", function()
+MachoMenuButton(EventTabSections[4], "Exxecute", function()
     local RawInput = MachoMenuGetInputbox(TriggerBoxHandle)
     local TriggerType = MachoMenuGetInputbox(TriggerEventHandle)
     local TargetResource = MachoMenuGetInputbox(TriggerResourceHandle)
@@ -5923,6 +5923,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
