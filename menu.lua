@@ -202,7 +202,7 @@ local HalfHeight = (SectionChildHeight - (SectionsPadding * 3)) / 2
 
 local MenuWindow = MachoMenuTabbedWindow("VIP", MenuStartCoords.x, MenuStartCoords.y, MenuSize.x, MenuSize.y, TabsBarWidth)
 MachoMenuSetKeybind(MenuWindow, 0x14)
-MachoMenuSetAccent(MenuWindow, 192, 192, 192)
+MachoMenuSetAccent(MenuWindow, 137, 52, 235)
 
 
 -- local function CreateRainbowInterface()
@@ -5906,6 +5906,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
