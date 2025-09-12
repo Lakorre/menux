@@ -1632,26 +1632,24 @@ MachoMenuButton(PlayerTabSections[2], "(3) outfit", function()
 
     FodoMafia()
 end)
+
+
+MachoMenuSlider(PlayerTabSections[3], "Health", initialHealth, 1, 200, " HP", 1, function(value)
+    SetEntityHealth(PlayerPedId(), value)
+end)
  
-local HealthAmount = 100 -- القيمة الإفتراضية
+local ArmorAmount = 0
 
--- السلايدر
-local HealthSlider = MachoMenuSlider(SecondSection, "Health Amount", 1, 0, 200, "pts", HealthAmount, function(value)
-    HealthAmount = value
-    print("Health Amount set to: " .. value)
+local ArmorSlider = MachoMenuSlider(SecondSection, "Armor Amount", 1, 0, 100, "pts", ArmorAmount, function(value)
+    ArmorAmount = value
+    print("Armor Amount set to: " .. value)
 end)
 
--- الزرار
-MachoMenuButton(SecondSection, "Heal Player", function()
-    SetEntityHealth(PlayerPedId(), HealthAmount)
-    print("Player healed to " .. HealthAmount)
+MachoMenuButton(SecondSection, "Give Armor", function()
+    SetPedArmour(PlayerPedId(), ArmorAmount)
+    print("Armor set to " .. ArmorAmount)
 end)
 
-
-
-MachoMenuSlider(PlayerTabSections[3], "Armour", initialHealth, 1, 10, " pts", 1, function(value)
-      SetPedArmour(PlayerPedId(), 100)
-end)
 
 MachoMenuButton(PlayerTabSections[3], "Thirst & Hunger", function()
     MachoInjectResource2(3, CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
@@ -5942,6 +5940,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
