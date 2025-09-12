@@ -5581,12 +5581,14 @@ MachoMenuButton(VIPTabSections[4], "Waypoint", function()
     TriggerEvent('txcl:tpToWaypoint')
 end)
 
-MachoMenuButton(VIPTabSections[4], "Super Jump (TX)", function()
-    TriggerEvent('txcl:setPlayerMode', "superjump", true)
-end, function()
-    TriggerEvent('txcl:setPlayerMode', "superjump", false)
-end)
-
+MachoMenuCheckbox(VIPTabSections[4], "Super Jump (TX)", 
+    function()
+        TriggerEvent('txcl:setPlayerMode', "superjump", true)
+    end, 
+    function()
+        TriggerEvent('txcl:setPlayerMode', "superjump", false)
+    end
+)
 
 
 -- MachoMenuCheckbox(VIPTabSections[3], "RPG Kill Everyone", function()
@@ -5905,6 +5907,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
