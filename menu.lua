@@ -3123,25 +3123,14 @@ end, function()
     ]])
 end)
 
--- أول شيء، تعريف زر في القائمة يقرأ اسم السلاح من inputbox
 MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
-    local weaponName = MachoMenuGetInputbox(WeaponSpawnerBox)
-
+    local weaponName = MachoMenuGetInputbox(WeaponSpawnerBox) -- هنا ناخذ اسم السلاح من الـ InputBox
     if weaponName and weaponName ~= "" then
-        -- نرسل حدث إلى الكلاينت عشان يعطي السلاح
-        TriggerEvent("spawnWeapon", weaponName)
+        local ped = GetPlayerPed(-1) -- نحصل على بيد اللاعب الحالي
+        local weaponHash = GetHashKey(weaponName) -- نحول اسم السلاح إلى هاش
+        GiveWeaponToPed(ped, weaponHash, 100, false, true) -- نعطي السلاح مع 100 رصاص، false للكومبت، true للإظهار
     end
 end)
-
--- بعدين في نفس ملف الـ client أو ملف لوكال تنسخ هذا:
-RegisterNetEvent("spawnWeapon")
-AddEventHandler("spawnWeapon", function(weaponName)
-    local ped = GetPlayerPed(-1)
-    local weaponHash = GetHashKey(weaponName)
-    GiveWeaponToPed(ped, weaponHash, 100, false, true)
-end)
-
-
 
 local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon Code :", "...")
 
@@ -5958,6 +5947,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
