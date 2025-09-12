@@ -366,12 +366,22 @@ local function SettingTabContent(tab)
     return SectionOne, SectionTwo, SectionThree, SectionFour
 end
 
-local function TXTabContent(tab)
+local function PlayerTabContent(tab)
     local leftX = TabsBarWidth + SectionsPadding
-    local topY = SectionsPadding + MachoPaneGap
-    local SectionOne = MachoMenuGroup(tab, "tx", leftX, topY, leftX + ColumnWidth, topY + HalfHeight)
-    return SectionOne
+    local topY = SectionsPadding + MachoPanelGap
+    local midY = topY + HalfHeight + SectionsPadding
+    local rightX = leftX + ColumnWidth + SectionsPadding
+
+    local totalRightHeight = (HalfHeight * 2) + SectionsPadding
+
+    local SectionOne = MachoMenuGroup(tab, "Self", leftX, topY, leftX + ColumnWidth, topY + totalRightHeight)
+
+    local SectionTwo = MachoMenuGroup(tab, "Model Changer & outfit", rightX, topY, rightX + ColumnWidth, topY + HalfHeight)
+    local SectionThree = MachoMenuGroup(tab, "Player Options", rightX, midY, rightX + ColumnWidth, midY + HalfHeight)
+
+    return SectionOne, SectionTwo, SectionThree
 end
+
 
 -- Tab Sections
 local PlayerTabSections = { PlayerTabContent(PlayerTab) }
@@ -5959,6 +5969,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
