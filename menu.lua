@@ -225,8 +225,8 @@ MachoMenuText(MenuWindow, "Self & Server")
 local PlayerTab = MachoMenuAddTab(MenuWindow, "Self")
 local ServerTab = MachoMenuAddTab(MenuWindow, "Server")
 MachoMenuText(MenuWindow, "Teleport & Vehicle")
-local VehicleTab = MachoMenuAddTab(MenuWindow, "Vehicle")
 local WeaponTab = MachoMenuAddTab(MenuWindow, "Teleport")
+local VehicleTab = MachoMenuAddTab(MenuWindow, "Vehicle")
 MachoMenuText(MenuWindow, "Weapon & Animations")
 local EmoteTab = MachoMenuAddTab(MenuWindow, "Animations")
 local WeaponTab = MachoMenuAddTab(MenuWindow, "Weapon")
@@ -5856,6 +5856,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
