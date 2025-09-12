@@ -3142,6 +3142,8 @@ MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
     end
 end)
 
+local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon:", "...")
+
 MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
     local weaponName = MachoMenuGetInputbox(WeaponSpawnerBox)
 
@@ -5955,6 +5957,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
