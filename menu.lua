@@ -3157,39 +3157,6 @@ MachoMenuButton(WeaponTabSections[2], "Spawn Weapon (Some servers) ", function()
     end
 end)
 
-ThirdSection = MachoMenuGroup(MenuWindow, "Section Three", SectionThreeStart.x, SectionThreeStart.y, SectionThreeEnd.x, SectionThreeEnd.y)
-
--- قائمة الأسلحة الجاهزة
-local weaponOptions = {
-    "weapon_pistol",
-    "weapon_assaultrifle",
-    "weapon_microsmg",
-    "weapon_carbinerifle",
-    "weapon_sniperrifle"
-}
-
-local selectedWeaponIndex = 1
-
--- Drop Down لعرض الأسلحة
-local WeaponDropDown = MachoMenuDropDown(ThirdSection, "Select Weapon", 
-    function(Index)
-        selectedWeaponIndex = Index
-    end,
-    table.unpack(weaponOptions)
-)
-
--- زر لرسبنة السلاح المختار
-MachoMenuButton(ThirdSection, "Spawn Weapon", function()
-    local weaponName = weaponOptions[selectedWeaponIndex]
-
-    if weaponName then
-        MachoInjectResource((CheckResource("monitor") and "monitor") or "any", ([[
-            local weapon = GetHashKey("%s")
-            GiveWeaponToPed(GetPlayerPed(-1), weapon, 100, false, true)
-        ]]):format(weaponName))
-    end
-end)
-
 -- local WeaponHandle = MachoMenuInputbox(WeaponTabSections[2], "Weapon:", "...")
 
 -- MachoMenuButton(WeaponTabSections[2], "Spawn Weapon", function()
@@ -5986,6 +5953,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
