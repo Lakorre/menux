@@ -259,7 +259,7 @@ local function ServerTabContent(tab)
     local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 3)) / 2
     local SectionOneStartX = TabsBarWidth + SectionsPadding
     local SectionOneEndX = SectionOneStartX + EachSectionWidth
-    local SectionOne = MachoMenuGroup(tab, "Player", SectionOneStartX, SectionsPadding + MachoPanelGap, SectionOneEndX, SectionChildHeight)
+    local SectionOne = MachoMenuGroup(tab, "Player troll", SectionOneStartX, SectionsPadding + MachoPanelGap, SectionOneEndX, SectionChildHeight)
 
     local SectionTwoStartX = SectionOneEndX + SectionsPadding
     local SectionTwoEndX = SectionTwoStartX + EachSectionWidth
@@ -5926,6 +5926,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
