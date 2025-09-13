@@ -851,6 +851,75 @@ end, function()
     ]])
 end)
 
+MachoMenuCheckbox(PlayerTabSections[1], "Free Move (F2)", function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        if SafeMoveMode == nil then SafeMoveMode = false end
+        SafeMoveMode = true
+
+        local function StartFreeMove()
+            CreateThread(function()
+                while SafeMoveMode and not Unloaded do
+                    Wait(0)
+
+                    if IsDisabledControlJustPressed(0, 289) then -- F2
+                        FreeMoveActive = not FreeMoveActive
+                    end
+
+                    if FreeMoveActive then
+                        local speed = 2.0
+                        local ped = PlayerPedId()
+                        local pos = GetEntityCoords(ped)
+                        local heading = GetGameplayCamRelativeHeading() + GetEntityHeading(ped)
+                        local pitch = GetGameplayCamRelativePitch()
+
+                        local dx = -math.sin(math.rad(heading))
+                        local dy = math.cos(math.rad(heading))
+                        local dz = math.sin(math.rad(pitch))
+                        local len = math.sqrt(dx * dx + dy * dy + dz * dz)
+
+                        if len ~= 0 then
+                            dx, dy, dz = dx / len, dy / len, dz / len
+                        end
+
+                        if IsDisabledControlPressed(0, 21) then speed = speed + 2.5 end -- Shift
+                        if IsDisabledControlPressed(0, 19) then speed = 0.25 end        -- Alt
+
+                        if IsDisabledControlPressed(0, 32) then
+                            pos = pos + vector3(dx, dy, dz) * speed
+                        end
+                        if IsDisabledControlPressed(0, 34) then
+                            pos = pos + vector3(-dy, dx, 0.0) * speed
+                        end
+                        if IsDisabledControlPressed(0, 269) then
+                            pos = pos - vector3(dx, dy, dz) * speed
+                        end
+                        if IsDisabledControlPressed(0, 9) then
+                            pos = pos + vector3(dy, -dx, 0.0) * speed
+                        end
+                        if IsDisabledControlPressed(0, 22) then
+                            pos = pos + vector3(0.0, 0.0, speed)
+                        end
+                        if IsDisabledControlPressed(0, 36) then
+                            pos = pos - vector3(0.0, 0.0, speed)
+                        end
+
+                        SetEntityCoordsNoOffset(ped, pos.x, pos.y, pos.z, true, true, true)
+                        SetEntityHeading(ped, heading)
+                    end
+                end
+                FreeMoveActive = false
+            end)
+        end
+
+        StartFreeMove()
+    ]])
+end, function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        SafeMoveMode = false
+        FreeMoveActive = false
+    ]])
+end)
+
 MachoMenuCheckbox(PlayerTabSections[1], "Free Camera (H)", function()
     MachoInjectResource((CheckResource("core") and "core") or (CheckResource("es_extended") and "es_extended") or (CheckResource("qb-core") and "qb-core") or (CheckResource("monitor") and "monitor") or "any", [[
         
@@ -6055,6 +6124,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
