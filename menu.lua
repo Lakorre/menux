@@ -276,27 +276,19 @@ local function ServerTabContent(tab)
     local SectionHeight = SectionChildHeight
 
    local function ServerTabContent(tab)
-    -- حساب عرض كل قسم (3 أقسام مع 4 فواصل بينية)
     local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 4)) / 3
 
-    -- الإحداثيات الرأسية والثابتة لجميع الأقسام
-    local SectionTopY = SectionsPadding + MachoPanelGap
-    local SectionBottomY = SectionChildHeight
-
-    -- القسم الأول: Player troll
     local SectionOneStartX = TabsBarWidth + SectionsPadding
     local SectionOneEndX = SectionOneStartX + EachSectionWidth
-    local SectionOne = MachoMenuGroup(tab, "Player troll", SectionOneStartX, SectionTopY, SectionOneEndX, SectionBottomY)
+    local SectionOne = MachoMenuGroup(tab, "Player troll", SectionOneStartX, SectionsPadding + MachoPanelGap, SectionOneEndX, SectionChildHeight)
 
-    -- القسم الثاني: Everyone
     local SectionTwoStartX = SectionOneEndX + SectionsPadding
     local SectionTwoEndX = SectionTwoStartX + EachSectionWidth
-    local SectionTwo = MachoMenuGroup(tab, "Everyone", SectionTwoStartX, SectionTopY, SectionTwoEndX, SectionBottomY)
+    local SectionTwo = MachoMenuGroup(tab, "Everyone", SectionTwoStartX, SectionsPadding + MachoPanelGap, SectionTwoEndX, SectionChildHeight)
 
-    -- القسم الثالث: Server Tools
     local SectionThreeStartX = SectionTwoEndX + SectionsPadding
     local SectionThreeEndX = SectionThreeStartX + EachSectionWidth
-    local SectionThree = MachoMenuGroup(tab, "Server Tools", SectionThreeStartX, SectionTopY, SectionThreeEndX, SectionBottomY)
+    local SectionThree = MachoMenuGroup(tab, "Server Tools", SectionThreeStartX, SectionsPadding + MachoPanelGap, SectionThreeEndX, SectionChildHeight)
 
     return SectionOne, SectionTwo, SectionThree
 end
@@ -5959,6 +5951,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
