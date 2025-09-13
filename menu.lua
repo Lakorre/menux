@@ -764,6 +764,100 @@ end, function()
     ]])
 end)
 
+MachoMenuCheckbox(PlayerTabSections[1], "No Clip (F1)", function(enabled)
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
+        local flyMode = %s
+
+        local function enableFlyMode()
+            local playerPed = PlayerPedId
+            local getVehicle = GetVehiclePedIsIn
+            local getCoords = GetEntityCoords
+            local getHeading = GetEntityHeading
+            local getCamRelHeading = GetGameplayCamRelativeHeading
+            local getCamRelPitch = GetGameplayCamRelativePitch
+            local isControlJustPressed = IsDisabledControlJustPressed
+            local isControlPressed = IsDisabledControlPressed
+            local setCoords = SetEntityCoordsNoOffset
+            local setHeading = SetEntityHeading
+            local createThread = CreateThread
+
+            local flyEnabled = false
+
+            createThread(function()
+                while flyMode and not Unloaded do
+                    Wait(0)
+
+                    if isControlJustPressed(0, 288) then -- F1 to toggle
+                        flyEnabled = not flyEnabled
+                        SetEntityVisible(playerPed(), true, false)
+                        SetEntityCollision(playerPed(), true, true)
+                        FreezeEntityPosition(playerPed(), false)
+                    end
+
+                    if flyEnabled then
+                        local speed = 2.0
+
+                        local ped = playerPed()
+                        local veh = getVehicle(ped, false)
+                        local inVehicle = veh ~= 0 and veh ~= nil
+                        local ent = inVehicle and veh or ped
+
+                        local pos = getCoords(ent, true)
+                        local head = getCamRelHeading() + getHeading(ent)
+                        local pitch = getCamRelPitch()
+
+                        local dx = -math.sin(math.rad(head))
+                        local dy = math.cos(math.rad(head))
+                        local dz = math.sin(math.rad(pitch))
+                        local len = math.sqrt(dx * dx + dy * dy + dz * dz)
+
+                        if len ~= 0 then
+                            dx, dy, dz = dx / len, dy / len, dz / len
+                        end
+
+                        if isControlPressed(0, 21) then speed = speed + 2.5 end
+                        if isControlPressed(0, 19) then speed = 0.25 end
+
+                        if isControlPressed(0, 32) then -- W
+                            pos = pos + vector3(dx, dy, dz) * speed
+                        end
+                        if isControlPressed(0, 34) then -- D
+                            pos = pos + vector3(-dy, dx, 0.0) * speed
+                        end
+                        if isControlPressed(0, 269) then -- S
+                            pos = pos - vector3(dx, dy, dz) * speed
+                        end
+                        if isControlPressed(0, 9) then -- A
+                            pos = pos + vector3(dy, -dx, 0.0) * speed
+                        end
+                        if isControlPressed(0, 22) then -- Space
+                            pos = pos + vector3(0.0, 0.0, speed)
+                        end
+                        if isControlPressed(0, 36) then -- Ctrl
+                            pos = pos - vector3(0.0, 0.0, speed)
+                        end
+
+                        setCoords(ent, pos.x, pos.y, pos.z, true, true, true)
+                        setHeading(ent, head)
+
+                        SetEntityVisible(ped, true, false)
+                        SetEntityCollision(ped, true, true)
+                        FreezeEntityPosition(ped, false)
+                    end
+                end
+            end)
+        end
+
+        enableFlyMode()
+    ]]):format(tostring(enabled)))
+end)
+end, function()
+
+MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        NpYgTbUcXsRoVm = false
+    ]])
+end)
+
 MachoMenuCheckbox(PlayerTabSections[1], "No Clip (F1)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         if NpYgTbUcXsRoVm == nil then NpYgTbUcXsRoVm = false end
@@ -5969,6 +6063,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
