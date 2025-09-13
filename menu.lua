@@ -257,26 +257,6 @@ end
 
 local function ServerTabContent(tab)
     local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 4)) / 3
-    local SectionY = SectionsPadding + MachoPanelGap
-    local SectionHeight = SectionChildHeight
-
-    local SectionOneStartX = TabsBarWidth + SectionsPadding
-    local SectionOneEndX = SectionOneStartX + EachSectionWidth
-    local SectionOne = MachoMenuGroup(tab, "Player troll", SectionOneStartX, SectionY, SectionOneEndX, SectionHeight)
-
-    local SectionTwoStartX = SectionOneEndX + SectionsPadding
-    local SectionTwoEndX = SectionTwoStartX + EachSectionWidth
-    local SectionTwo = MachoMenuGroup(tab, "Everyone", SectionTwoStartX, SectionY, SectionTwoEndX, SectionHeight)
-
-    local SectionThreeStartX = SectionTwoEndX + SectionsPadding
-    local SectionThreeEndX = SectionThreeStartX + EachSectionWidth
-    local function ServerTabContent(tab)
-    local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 4)) / 3
-    local SectionY = SectionsPadding + MachoPanelGap
-    local SectionHeight = SectionChildHeight
-
-   local function ServerTabContent(tab)
-    local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 4)) / 3
 
     local SectionOneStartX = TabsBarWidth + SectionsPadding
     local SectionOneEndX = SectionOneStartX + EachSectionWidth
@@ -292,6 +272,7 @@ local function ServerTabContent(tab)
 
     return SectionOne, SectionTwo, SectionThree
 end
+
 
 local function TeleportTabContent(tab)
     local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 3)) / 2
@@ -5956,6 +5937,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
