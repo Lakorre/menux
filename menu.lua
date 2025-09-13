@@ -764,97 +764,9 @@ end, function()
     ]])
 end)
 
-MachoMenuCheckbox(PlayerTabSections[1], "No Clip (F1)", function(enabled)
-    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
-        local flyMode = %s
-
-        local function enableFlyMode()
-            local playerPed = PlayerPedId
-            local getVehicle = GetVehiclePedIsIn
-            local getCoords = GetEntityCoords
-            local getHeading = GetEntityHeading
-            local getCamRelHeading = GetGameplayCamRelativeHeading
-            local getCamRelPitch = GetGameplayCamRelativePitch
-            local isControlJustPressed = IsDisabledControlJustPressed
-            local isControlPressed = IsDisabledControlPressed
-            local setCoords = SetEntityCoordsNoOffset
-            local setHeading = SetEntityHeading
-            local createThread = CreateThread
-
-            local flyEnabled = false
-
-            createThread(function()
-                while flyMode and not Unloaded do
-                    Wait(0)
-
-                    if isControlJustPressed(0, 288) then -- F1 to toggle
-                        flyEnabled = not flyEnabled
-                        SetEntityVisible(playerPed(), true, false)
-                        SetEntityCollision(playerPed(), true, true)
-                        FreezeEntityPosition(playerPed(), false)
-                    end
-
-                    if flyEnabled then
-                        local speed = 2.0
-
-                        local ped = playerPed()
-                        local veh = getVehicle(ped, false)
-                        local inVehicle = veh ~= 0 and veh ~= nil
-                        local ent = inVehicle and veh or ped
-
-                        local pos = getCoords(ent, true)
-                        local head = getCamRelHeading() + getHeading(ent)
-                        local pitch = getCamRelPitch()
-
-                        local dx = -math.sin(math.rad(head))
-                        local dy = math.cos(math.rad(head))
-                        local dz = math.sin(math.rad(pitch))
-                        local len = math.sqrt(dx * dx + dy * dy + dz * dz)
-
-                        if len ~= 0 then
-                            dx, dy, dz = dx / len, dy / len, dz / len
-                        end
-
-                        if isControlPressed(0, 21) then speed = speed + 2.5 end
-                        if isControlPressed(0, 19) then speed = 0.25 end
-
-                        if isControlPressed(0, 32) then -- W
-                            pos = pos + vector3(dx, dy, dz) * speed
-                        end
-                        if isControlPressed(0, 34) then -- D
-                            pos = pos + vector3(-dy, dx, 0.0) * speed
-                        end
-                        if isControlPressed(0, 269) then -- S
-                            pos = pos - vector3(dx, dy, dz) * speed
-                        end
-                        if isControlPressed(0, 9) then -- A
-                            pos = pos + vector3(dy, -dx, 0.0) * speed
-                        end
-                        if isControlPressed(0, 22) then -- Space
-                            pos = pos + vector3(0.0, 0.0, speed)
-                        end
-                        if isControlPressed(0, 36) then -- Ctrl
-                            pos = pos - vector3(0.0, 0.0, speed)
-                        end
-
-                        setCoords(ent, pos.x, pos.y, pos.z, true, true, true)
-                        setHeading(ent, head)
-
-                        SetEntityVisible(ped, true, false)
-                        SetEntityCollision(ped, true, true)
-                        FreezeEntityPosition(ped, false)
-                    end
-                end
-            end)
-        end
-
-        enableFlyMode()
-    ]]):format(tostring(enabled)))
-end)
-
 MachoMenuCheckbox(PlayerTabSections[1], "No Clip (F1)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
-        if NpYgTbUcXsRoVm == nil then NpYgTbUcXsRoVm = false 
+        if NpYgTbUcXsRoVm == nil then NpYgTbUcXsRoVm = false end
         NpYgTbUcXsRoVm = true
 
         local function KUQpH7owdz()
@@ -1955,6 +1867,7 @@ MachoMenuButton(ServerTabSections[4], "Spawn Police Helicopter", function()
 end)
 
 -- تعريف مربع الإدخال
+
 local playerIdInput = MachoMenuInputbox(ServerTabSections[1], "Player id :", "Enter Player ID")
 
 MachoMenuCheckbox(ServerTabSections[1], "id", 
@@ -1970,8 +1883,54 @@ MachoMenuCheckbox(ServerTabSections[1], "id",
         ]])
     end
 )
+MachoMenuCheckbox(ServerTabSections[1], "Spectate Player", function()
+    local sEpTaRgEtXzYw = MachoMenuGetSelectedPlayer()
+    if sEpTaRgEtXzYw and sEpTaRgEtXzYw > 0 then
+        MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
+            if AsDfGhJkLpZx == nil then AsDfGhJkLpZx = false end
+            AsDfGhJkLpZx = true
 
-local playerIdInput = MachoMenuInputbox(ServerTabSections[1], "Player id :", "Enter Player ID")
+            local function QwErTyUiOpAs()
+                if AsDfGhJkLpZx == nil then AsDfGhJkLpZx = false end
+                AsDfGhJkLpZx = true
+
+                local a1B2c3D4e5F6 = CreateThread
+                a1B2c3D4e5F6(function()
+                    local k9L8m7N6b5V4 = GetPlayerPed
+                    local x1Y2z3Q4w5E6 = GetEntityCoords
+                    local u7I8o9P0a1S2 = RequestAdditionalCollisionAtCoord
+                    local f3G4h5J6k7L8 = NetworkSetInSpectatorMode
+                    local m9N8b7V6c5X4 = NetworkOverrideCoordsAndHeading
+                    local r1T2y3U4i5O6 = Wait
+                    local l7P6o5I4u3Y2 = DoesEntityExist
+
+                    while AsDfGhJkLpZx and not Unloaded do
+                        local d3F4g5H6j7K8 = %d
+                        local v6C5x4Z3a2S1 = k9L8m7N6b5V4(d3F4g5H6j7K8)
+
+                        if v6C5x4Z3a2S1 and l7P6o5I4u3Y2(v6C5x4Z3a2S1) then
+                            local b1N2m3K4l5J6 = x1Y2z3Q4w5E6(v6C5x4Z3a2S1, false)
+                            u7I8o9P0a1S2(b1N2m3K4l5J6.x, b1N2m3K4l5J6.y, b1N2m3K4l5J6.z)
+                            f3G4h5J6k7L8(true, v6C5x4Z3a2S1)
+                            m9N8b7V6c5X4(x1Y2z3Q4w5E6(v6C5x4Z3a2S1))
+                        end
+
+                        r1T2y3U4i5O6(0)
+                    end
+
+                    f3G4h5J6k7L8(false, 0)
+                end)
+            end
+
+            QwErTyUiOpAs()
+
+        ]]):format(sEpTaRgEtXzYw))
+    end
+end, function()
+    MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
+        AsDfGhJkLpZx = false
+    ]])
+end)
 
 MachoMenuButton(ServerTabSections[1], "Explode Player (Risk)", function()
     local playerIdStr = playerIdInput:GetValue() -- جلب القيمة من خانة الإدخال
@@ -2008,6 +1967,45 @@ MachoMenuButton(ServerTabSections[1], "Explode Player (Risk)", function()
     end
 end)
 
+MachoMenuButton(ServerTabSections[1], "Kill Player", function()
+    local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
+    if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
+        MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", ([[
+            local function UiLpKjHgFdSaTrEq()
+                local RvTyUiOpAsDfGhJ = %d
+
+                local dFrTgYhUjIkLoPl = CreateThread
+                dFrTgYhUjIkLoPl(function()
+                    Wait(0)
+
+                    local ZxCvBnMaSdFgTrEq = GetPlayerPed
+                    local TyUiOpAsDfGhJkLz = GetEntityCoords
+                    local QwErTyUiOpAsDfGh = ShootSingleBulletBetweenCoords
+                    local pEd = ZxCvBnMaSdFgTrEq(RvTyUiOpAsDfGhJ)
+
+                    if not pEd or not DoesEntityExist(pEd) then return end
+
+                    local tArGeT = TyUiOpAsDfGhJkLz(pEd)
+                    local oRiGiN = vector3(tArGeT.x, tArGeT.y, tArGeT.z + 2.0)
+
+                    QwErTyUiOpAsDfGh(
+                        oRiGiN.x, oRiGiN.y, oRiGiN.z,
+                        tArGeT.x, tArGeT.y, tArGeT.z,
+                        500.0,
+                        true,
+                        GetHashKey("WEAPON_ASSAULTRIFLE"),
+                        PlayerPedId(),
+                        true,
+                        false,
+                        -1.0
+                    )
+                end)
+            end
+
+            UiLpKjHgFdSaTrEq()
+        ]]):format(oPlMnBvCxZaQwEr))
+    end
+end)
 
 
 MachoMenuButton(ServerTabSections[1], "Taze Player", function()
@@ -6057,6 +6055,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
