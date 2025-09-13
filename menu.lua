@@ -1859,23 +1859,22 @@ MachoMenuCheckbox(ServerTabSections[3], "id",
 )
 
 --- cfw
--- Inputbox لحفظ Player ID
-local PlayerIdInput = MachoMenuTextbox(ServerTabSections[4], "Player id :", "")
 
--- زر OpenInventory يستخدم القيمة من فوق
-MachoMenuButton(ServerTabSections[4], "OpenInventory", function()
-    local id = PlayerIdInput:GetValue()
-    
-    if id and id ~= "" then
-        TriggerServerEvent("inventory:server:OpenInventory", "otherplayer", tonumber(id))
-    else
-        print("Please enter a valid player ID")
-    end
-end)
 
 
 -- ايدي الاعب
-local WeaponHandle = MachoMenuInputbox(ServerTabSections[1], " Player id :", "...")
+local playerIdInput = MachoMenuInputbox(ServerTabSections[4], "Player id :", "")
+
+MachoMenuButton(ServerTabSections[4], "OpenInventory", function()
+    local id = MachoMenuGetInputbox(playerIdInput)
+
+    if id and id ~= "" and tonumber(id) then
+        TriggerServerEvent("inventory:server:OpenInventory", "otherplayer", tonumber(id))
+    else
+        print("❌ Invalid ID. Please enter a number.")
+    end
+end)
+
 
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
@@ -5959,6 +5958,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
