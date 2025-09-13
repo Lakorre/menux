@@ -256,31 +256,37 @@ local function PlayerTabContent(tab)
 end
 
 local function ServerTabContent(tab)
-    -- تحديث عدد الفواصل: 5 فواصل بين 4 أقسام
-    local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 5)) / 4
+    -- تحديث عدد الفواصل: 3 فواصل بين 4 أقسام مرتبة في صفين وعمودين
+    local EachSectionWidth = (SectionChildWidth - (SectionsPadding * 3)) / 2
+    local EachSectionHeight = (SectionChildHeight - (SectionsPadding * 3)) / 2
 
-    local SectionTopY = SectionsPadding + MachoPanelGap
-    local SectionBottomY = SectionChildHeight
-
-    -- القسم الأول: Player troll
+    -- الصف الأول، العمود الأول: Player troll
     local SectionOneStartX = TabsBarWidth + SectionsPadding
     local SectionOneEndX = SectionOneStartX + EachSectionWidth
-    local SectionOne = MachoMenuGroup(tab, "Player troll", SectionOneStartX, SectionTopY, SectionOneEndX, SectionBottomY)
+    local SectionOneStartY = SectionsPadding + MachoPanelGap
+    local SectionOneEndY = SectionOneStartY + EachSectionHeight
+    local SectionOne = MachoMenuGroup(tab, "Player troll", SectionOneStartX, SectionOneStartY, SectionOneEndX, SectionOneEndY)
 
-    -- القسم الثاني: Everyone
+    -- الصف الأول، العمود الثاني: Everyone
     local SectionTwoStartX = SectionOneEndX + SectionsPadding
     local SectionTwoEndX = SectionTwoStartX + EachSectionWidth
-    local SectionTwo = MachoMenuGroup(tab, "Everyone", SectionTwoStartX, SectionTopY, SectionTwoEndX, SectionBottomY)
+    local SectionTwoStartY = SectionOneStartY
+    local SectionTwoEndY = SectionOneEndY
+    local SectionTwo = MachoMenuGroup(tab, "Everyone", SectionTwoStartX, SectionTwoStartY, SectionTwoEndX, SectionTwoEndY)
 
-    -- القسم الثالث: Server Tools
-    local SectionThreeStartX = SectionTwoEndX + SectionsPadding
-    local SectionThreeEndX = SectionThreeStartX + EachSectionWidth
-    local SectionThree = MachoMenuGroup(tab, "Server Tools", SectionThreeStartX, SectionTopY, SectionThreeEndX, SectionBottomY)
+    -- الصف الثاني، العمود الأول: Server Tools
+    local SectionThreeStartX = SectionOneStartX
+    local SectionThreeEndX = SectionOneEndX
+    local SectionThreeStartY = SectionOneEndY + SectionsPadding
+    local SectionThreeEndY = SectionThreeStartY + EachSectionHeight
+    local SectionThree = MachoMenuGroup(tab, "Server Tools", SectionThreeStartX, SectionThreeStartY, SectionThreeEndX, SectionThreeEndY)
 
-    -- القسم الرابع: cfw
-    local SectionFourStartX = SectionThreeEndX + SectionsPadding
-    local SectionFourEndX = SectionFourStartX + EachSectionWidth
-    local SectionFour = MachoMenuGroup(tab, "cfw", SectionFourStartX, SectionTopY, SectionFourEndX, SectionBottomY)
+    -- الصف الثاني، العمود الثاني: cfw
+    local SectionFourStartX = SectionTwoStartX
+    local SectionFourEndX = SectionTwoEndX
+    local SectionFourStartY = SectionThreeStartY
+    local SectionFourEndY = SectionThreeEndY
+    local SectionFour = MachoMenuGroup(tab, "cfw", SectionFourStartX, SectionFourStartY, SectionFourEndX, SectionFourEndY)
 
     return SectionOne, SectionTwo, SectionThree, SectionFour
 end
@@ -5949,6 +5955,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
