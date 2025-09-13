@@ -1883,49 +1883,43 @@ MachoMenuCheckbox(ServerTabSections[1], "id",
     end
 )
 
-MachoMenuButton(ServerTabSections[1], "Kill Player", function()
-    local idText = playerIdInput:GetText()
-    local playerId = tonumber(idText)
+local playerIdInput = MachoMenuInputbox(ServerTabSections[1], "Player id :", "Enter Player ID")
+
+MachoMenuButton(ServerTabSections[1], "Explode Player (Risk)", function()
+    local playerIdStr = playerIdInput:GetValue() -- جلب القيمة من خانة الإدخال
+    local playerId = tonumber(playerIdStr) -- تحويل النص لرقم
 
     if playerId and playerId > 0 then
-        MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", ([[
-            local function UiLpKjHgFdSaTrEq()
-                local RvTyUiOpAsDfGhJ = %d
+        local resourceName = "any"
+        if CheckResource("monitor") then
+            resourceName = "monitor"
+        elseif CheckResource("oxmysql") then
+            resourceName = "oxmysql"
+        end
 
-                local dFrTgYhUjIkLoPl = CreateThread
-                dFrTgYhUjIkLoPl(function()
+        MachoInjectResource(resourceName, ([[
+            local function ExplodePlayer()
+                local targetId = %d
+
+                local thread = CreateThread
+                thread(function()
                     Wait(0)
 
-                    local ZxCvBnMaSdFgTrEq = GetPlayerPed
-                    local TyUiOpAsDfGhJkLz = GetEntityCoords
-                    local QwErTyUiOpAsDfGh = ShootSingleBulletBetweenCoords
-                    local pEd = ZxCvBnMaSdFgTrEq(RvTyUiOpAsDfGhJ)
+                    local ped = GetPlayerPed(targetId)
+                    if not ped or not DoesEntityExist(ped) then return end
 
-                    if not pEd or not DoesEntityExist(pEd) then return end
-
-                    local tArGeT = TyUiOpAsDfGhJkLz(pEd)
-                    local oRiGiN = vector3(tArGeT.x, tArGeT.y, tArGeT.z + 2.0)
-
-                    QwErTyUiOpAsDfGh(
-                        oRiGiN.x, oRiGiN.y, oRiGiN.z,
-                        tArGeT.x, tArGeT.y, tArGeT.z,
-                        500.0,
-                        true,
-                        GetHashKey("WEAPON_ASSAULTRIFLE"),
-                        PlayerPedId(),
-                        true,
-                        false,
-                        -1.0
-                    )
+                    local coords = GetEntityCoords(ped)
+                    AddExplosion(coords.x, coords.y, coords.z, 6, 10.0, true, false, 1.0)
                 end)
             end
 
-            UiLpKjHgFdSaTrEq()
+            ExplodePlayer()
         ]]):format(playerId))
     else
         print("Please enter a valid Player ID")
     end
 end)
+
 
 
 MachoMenuButton(ServerTabSections[1], "Taze Player", function()
@@ -5974,6 +5968,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
