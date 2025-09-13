@@ -851,7 +851,7 @@ end, function()
     ]])
 end)
 
-MachoMenuCheckbox(PlayerTabSections[1], "Free Move (X)", function()
+MachoMenuCheckbox(PlayerTabSections[1], "Free Move + Invisible (X)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         if SafeMoveMode == nil then SafeMoveMode = false end
         SafeMoveMode = true
@@ -863,6 +863,10 @@ MachoMenuCheckbox(PlayerTabSections[1], "Free Move (X)", function()
 
                     if IsDisabledControlJustPressed(0, 73) then -- زر X
                         FreeMoveActive = not FreeMoveActive
+
+                        local ped = PlayerPedId()
+                        SetEntityVisible(ped, not FreeMoveActive, false) -- إخفاء/إظهار الشخصية
+                        SetEntityInvincible(ped, FreeMoveActive)         -- مناعة أثناء الطيران
                     end
 
                     if FreeMoveActive then
@@ -907,6 +911,11 @@ MachoMenuCheckbox(PlayerTabSections[1], "Free Move (X)", function()
                         SetEntityHeading(ped, heading)
                     end
                 end
+
+                -- رجوع الوضع الطبيعي عند إيقاف الطيران
+                local ped = PlayerPedId()
+                SetEntityVisible(ped, true, false)
+                SetEntityInvincible(ped, false)
                 FreeMoveActive = false
             end)
         end
@@ -917,8 +926,12 @@ end, function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         SafeMoveMode = false
         FreeMoveActive = false
+        local ped = PlayerPedId()
+        SetEntityVisible(ped, true, false)
+        SetEntityInvincible(ped, false)
     ]])
 end)
+
 
 
 MachoMenuCheckbox(PlayerTabSections[1], "Free Camera (H)", function()
@@ -6125,6 +6138,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
