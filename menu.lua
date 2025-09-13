@@ -1862,10 +1862,11 @@ MachoMenuCheckbox(ServerTabSections[3], "id",
 local WeaponHandle = MachoMenuInputbox(ServerTabSections[4], " Player id :", "Enter Player ID")
 
 MachoMenuButton(ServerTabSections[4], "OpenInventory", function()
-    local id = MachoMenuGetInputbox()  -- خذ الإدخال من المستخدم كـ id
-    
+    local id = MachoMenuGetInputbox(PlayerIDInput) -- خذ القيمة من الـ Inputbox
     if id and id ~= "" then
-        TriggerServerEvent("inventory:server:OpenInventory", "otherplayer", id)
+        TriggerServerEvent("inventory:server:OpenInventory", "otherplayer", tonumber(id))
+    else
+        print("Please enter a valid player ID")
     end
 end)
 
@@ -5955,6 +5956,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
