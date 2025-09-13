@@ -851,8 +851,6 @@ MachoMenuCheckbox(PlayerTabSections[1], "No Clip (F1)", function(enabled)
         enableFlyMode()
     ]]):format(tostring(enabled)))
 end)
-end, function()
-
 MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         NpYgTbUcXsRoVm = false
     ]])
@@ -6063,6 +6061,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
