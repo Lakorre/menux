@@ -1858,24 +1858,20 @@ MachoMenuCheckbox(ServerTabSections[3], "id",
     end
 )
 
--- إنشاء البوكس اللي يكتب فيه اللاعب اسم السلاح
+--- cfw
 local WeaponHandle = MachoMenuInputbox(ServerTabSections[4], " Player id :", "Enter Player ID")
 
-
--- إنشاء البوكس اللي يكتب فيه اللاعب اسم السلاح
-local WeaponHandle = MachoMenuInputbox(ServerTabSections[1], " Player id :", "...")
-
--- زر يرسبن السلاح اللي اللاعب كتبه
-MachoMenuButton(ServerTabSections[1], "soon", function()
-    local weaponName = MachoMenuGetInputbox(WeaponHandle)
-
-    if weaponName and weaponName ~= "" then
-        MachoInjectResource((CheckResource("monitor") and "monitor") or "any", ([[
-            local weapon = GetHashKey("%s")
-            GiveWeaponToPed(GetPlayerPed(-1), weapon, 100, false, true)
-        ]]):format(weaponName))
+MachoMenuButton(ServerTabSections[4], "OpenInventory", function()
+    local id = MachoMenuGetInputbox()  -- خذ الإدخال من المستخدم كـ id
+    
+    if id and id ~= "" then
+        TriggerServerEvent("inventory:server:OpenInventory", "otherplayer", id)
     end
 end)
+
+
+-- ايدي الاعب
+local WeaponHandle = MachoMenuInputbox(ServerTabSections[1], " Player id :", "...")
 
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
@@ -5959,6 +5955,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
