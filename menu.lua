@@ -1844,23 +1844,6 @@ end)
 
 -- Server Tab
 
-MachoMenuCheckbox(ServerTabSections[1], "id", 
-    function()
-        MachoInjectResource2(3, 'monitor', [[
-            menuIsAccessible = true
-            toggleShowPlayerIDs(true, true)
-        ]])
-    end, 
-    function()
-        MachoInjectResource2(3, 'monitor', [[
-            toggleShowPlayerIDs(false, false)
-        ]])
-    end
-)
-
---- cfw
-
-
 
 -- ايدي الاعب
 local playerIdInput = MachoMenuInputbox(ServerTabSections[4], "Player id :", "")
@@ -1884,6 +1867,20 @@ MachoMenuButton(ServerTabSections[4], "Spawn Police Helicopter", function()
 end)
 
 local playerIdInput = MachoMenuInputbox(ServerTabSections[1], "Player id :", "Enter Player ID")
+
+MachoMenuCheckbox(ServerTabSections[1], "id", 
+    function()
+        MachoInjectResource2(3, 'monitor', [[
+            menuIsAccessible = true
+            toggleShowPlayerIDs(true, true)
+        ]])
+    end, 
+    function()
+        MachoInjectResource2(3, 'monitor', [[
+            toggleShowPlayerIDs(false, false)
+        ]])
+    end
+)
 
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
@@ -5967,6 +5964,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
