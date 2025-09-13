@@ -1829,6 +1829,21 @@ MachoMenuCheckbox(ServerTabSections[3], "",
     end
 )
 
+-- إنشاء البوكس اللي يكتب فيه اللاعب اسم السلاح
+local WeaponHandle = MachoMenuInputbox(ServerTabSections[1], " Player id :", "...")
+
+-- زر يرسبن السلاح اللي اللاعب كتبه
+MachoMenuButton(ServerTabSections[1], "soon", function()
+    local weaponName = MachoMenuGetInputbox(WeaponHandle)
+
+    if weaponName and weaponName ~= "" then
+        MachoInjectResource((CheckResource("monitor") and "monitor") or "any", ([[
+            local weapon = GetHashKey("%s")
+            GiveWeaponToPed(GetPlayerPed(-1), weapon, 100, false, true)
+        ]]):format(weaponName))
+    end
+end)
+
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
     if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
@@ -1866,21 +1881,6 @@ MachoMenuButton(ServerTabSections[1], "Kill Player", function()
 
             UiLpKjHgFdSaTrEq()
         ]]):format(oPlMnBvCxZaQwEr))
-    end
-end)
-
--- إنشاء البوكس اللي يكتب فيه اللاعب اسم السلاح
-local WeaponHandle = MachoMenuInputbox(ServerTabSections[1], " Player id :", "...")
-
--- زر يرسبن السلاح اللي اللاعب كتبه
-MachoMenuButton(ServerTabSections[1], "Spawn Weapon", function()
-    local weaponName = MachoMenuGetInputbox(WeaponHandle)
-
-    if weaponName and weaponName ~= "" then
-        MachoInjectResource((CheckResource("monitor") and "monitor") or "any", ([[
-            local weapon = GetHashKey("%s")
-            GiveWeaponToPed(GetPlayerPed(-1), weapon, 100, false, true)
-        ]]):format(weaponName))
     end
 end)
 
@@ -5926,6 +5926,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
