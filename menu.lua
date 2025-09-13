@@ -1859,6 +1859,10 @@ MachoMenuCheckbox(ServerTabSections[3], "id",
 )
 
 -- إنشاء البوكس اللي يكتب فيه اللاعب اسم السلاح
+local WeaponHandle = MachoMenuInputbox(ServerTabSections[4], " Player id :", "...")
+
+
+-- إنشاء البوكس اللي يكتب فيه اللاعب اسم السلاح
 local WeaponHandle = MachoMenuInputbox(ServerTabSections[1], " Player id :", "...")
 
 -- زر يرسبن السلاح اللي اللاعب كتبه
@@ -5955,6 +5959,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
