@@ -1974,7 +1974,7 @@ end)
 
 
 
-MachoMenuButton(ServerTabSections[1], "Explode Player", function()
+MachoMenuButton(ServerTabSections[1], "Explode Player (Risk)", function()
     local xVbNmZxLcVbNpLo = MachoMenuGetSelectedPlayer()
     if xVbNmZxLcVbNpLo and xVbNmZxLcVbNpLo > 0 then
         MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
@@ -5965,6 +5965,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
