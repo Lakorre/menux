@@ -1978,6 +1978,7 @@ end)
 MachoMenuButton(ServerTabSections[1], "Explode Player (Risk)", function()
     local playerId = tonumber(playerIdInput:GetValue()) -- Get the ID from the input box and convert to number
     if playerId and playerId > 0 then
+
         MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
             local function ExplodePlayer()
                 local targetId = %d
@@ -5968,6 +5969,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
