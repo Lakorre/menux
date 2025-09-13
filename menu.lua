@@ -1728,6 +1728,11 @@ MachoMenuButton(PlayerTabSections[3], "Revive", function()
                 return
             end
 
+            if GetResourceState('hospital') == 'started' then
+                TriggerServerEvent("hospital:server:RevivePlayer", -1)
+                return
+            end
+
             if GetResourceState('qb-core') == 'started' then
                 TriggerEvent("hospital:client:Revive")
                 return
@@ -5951,6 +5956,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
