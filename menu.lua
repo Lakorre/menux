@@ -1979,7 +1979,8 @@ end)
 
 
 
-- Button to explode the player with the entered ID
+-- Button to explode the player with the entered ID
+
 MachoMenuButton(ServerTabSections[1], "Explode Player (Risk)", function()
     local playerId = tonumber(playerIdInput:GetValue()) -- Get the ID from the input box and convert to number
     if playerId and playerId > 0 then
@@ -5973,6 +5974,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
