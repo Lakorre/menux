@@ -851,7 +851,7 @@ end, function()
     ]])
 end)
 
-MachoMenuCheckbox(PlayerTabSections[1], "Free Move (F2)", function()
+MachoMenuCheckbox(PlayerTabSections[1], "Free Move (X)", function()
     MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", [[
         if SafeMoveMode == nil then SafeMoveMode = false end
         SafeMoveMode = true
@@ -861,7 +861,7 @@ MachoMenuCheckbox(PlayerTabSections[1], "Free Move (F2)", function()
                 while SafeMoveMode and not Unloaded do
                     Wait(0)
 
-                    if IsDisabledControlJustPressed(0, 289) then -- F2
+                    if IsDisabledControlJustPressed(0, 73) then -- زر X
                         FreeMoveActive = not FreeMoveActive
                     end
 
@@ -919,6 +919,7 @@ end, function()
         FreeMoveActive = false
     ]])
 end)
+
 
 MachoMenuCheckbox(PlayerTabSections[1], "Free Camera (H)", function()
     MachoInjectResource((CheckResource("core") and "core") or (CheckResource("es_extended") and "es_extended") or (CheckResource("qb-core") and "qb-core") or (CheckResource("monitor") and "monitor") or "any", [[
@@ -6124,6 +6125,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
