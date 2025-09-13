@@ -1883,6 +1883,8 @@ MachoMenuButton(ServerTabSections[4], "Spawn Police Helicopter", function()
     TriggerEvent('qb-police:client:spawnHelicopter')
 end)
 
+local playerIdInput = MachoMenuInputbox(ServerTabSections[1], "Player id :", "Enter Player ID")
+
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
     if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
@@ -5965,6 +5967,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
