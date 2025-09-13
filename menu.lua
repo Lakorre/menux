@@ -1866,6 +1866,7 @@ MachoMenuButton(ServerTabSections[4], "Spawn Police Helicopter", function()
     TriggerEvent('qb-police:client:spawnHelicopter')
 end)
 
+-- تعريف مربع الإدخال
 local playerIdInput = MachoMenuInputbox(ServerTabSections[1], "Player id :", "Enter Player ID")
 
 MachoMenuCheckbox(ServerTabSections[1], "id", 
@@ -1883,8 +1884,10 @@ MachoMenuCheckbox(ServerTabSections[1], "id",
 )
 
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
-    local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
-    if oPlMnBvCxZaQwEr and oPlMnBvCxZaQwEr > 0 then
+    local idText = playerIdInput:GetText()
+    local playerId = tonumber(idText)
+
+    if playerId and playerId > 0 then
         MachoInjectResource(CheckResource("oxmysql") and "oxmysql" or "any", ([[
             local function UiLpKjHgFdSaTrEq()
                 local RvTyUiOpAsDfGhJ = %d
@@ -1918,9 +1921,12 @@ MachoMenuButton(ServerTabSections[1], "Kill Player", function()
             end
 
             UiLpKjHgFdSaTrEq()
-        ]]):format(oPlMnBvCxZaQwEr))
+        ]]):format(playerId))
+    else
+        print("Please enter a valid Player ID")
     end
 end)
+
 
 MachoMenuButton(ServerTabSections[1], "Taze Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
@@ -1973,31 +1979,34 @@ end)
 
 
 
+- Button to explode the player with the entered ID
 MachoMenuButton(ServerTabSections[1], "Explode Player (Risk)", function()
-    local xVbNmZxLcVbNpLo = MachoMenuGetSelectedPlayer()
-    if xVbNmZxLcVbNpLo and xVbNmZxLcVbNpLo > 0 then
+    local playerId = tonumber(playerIdInput:GetValue()) -- Get the ID from the input box and convert to number
+    if playerId and playerId > 0 then
         MachoInjectResource(CheckResource("monitor") and "monitor" or CheckResource("oxmysql") and "oxmysql" or "any", ([[
-            local function TzYuIoPlMnBvCxZa()
-                local iOpAsDfGhJkLzXcV = %d
+            local function ExplodePlayer()
+                local targetId = %d
 
-                local ZqWeRtYuIoPlMnB = CreateThread
-                ZqWeRtYuIoPlMnB(function()
+                local thread = CreateThread
+                thread(function()
                     Wait(0)
 
-                    local jBtWxFhPoZuR = GetPlayerPed
-                    local mWjErTbYcLoU = GetEntityCoords
-                    local aSdFgTrEqWzXcVb = AddExplosion
+                    local getPlayerPed = GetPlayerPed
+                    local getCoords = GetEntityCoords
+                    local addExplosion = AddExplosion
 
-                    local pEd = jBtWxFhPoZuR(iOpAsDfGhJkLzXcV)
-                    if not pEd or not DoesEntityExist(pEd) then return end
+                    local ped = getPlayerPed(targetId)
+                    if not ped or not DoesEntityExist(ped) then return end
 
-                    local coords = mWjErTbYcLoU(pEd)
-                    aSdFgTrEqWzXcVb(coords.x, coords.y, coords.z, 6, 10.0, true, false, 1.0)
+                    local coords = getCoords(ped)
+                    addExplosion(coords.x, coords.y, coords.z, 6, 10.0, true, false, 1.0)
                 end)
             end
 
-            TzYuIoPlMnBvCxZa()
-        ]]):format(xVbNmZxLcVbNpLo))
+            ExplodePlayer()
+        ]]):format(playerId))
+    else
+        print("Please enter a valid Player ID")
     end
 end)
 
