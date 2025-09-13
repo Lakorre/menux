@@ -1875,10 +1875,13 @@ MachoMenuButton(ServerTabSections[4], "OpenInventory", function()
     end
 end)
 
-MachoMenuButton(ServerTabSections[4], "Cuff Yourself", function()
+MachoMenuButton(ServerTabSections[4], "Cuff Player ", function()
     TriggerEvent("police:client:GetCuffed")
 end)
 
+MachoMenuButton(ServerTabSections[4], "UnCuff Player", function()
+    TriggerEvent("police:client:GetCuffed")
+end)
 
 MachoMenuButton(ServerTabSections[1], "Kill Player", function()
     local oPlMnBvCxZaQwEr = MachoMenuGetSelectedPlayer()
@@ -5962,6 +5965,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
