@@ -1844,7 +1844,7 @@ end)
 
 -- Server Tab
 
-MachoMenuCheckbox(ServerTabSections[3], "id", 
+MachoMenuCheckbox(ServerTabSections[1], "id", 
     function()
         MachoInjectResource2(3, 'monitor', [[
             menuIsAccessible = true
@@ -5967,6 +5967,7 @@ MachoMenuButton(SettingTabSections[3], "Framework Checker", function()
     local frameworkName = DetectFramework()
     notify("Framework: %s", frameworkName)
 end)
+
 
 
 
